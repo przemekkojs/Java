@@ -1,0 +1,141 @@
+import java.io.IOException;
+import java.util.Vector;
+
+public class Echo {
+	
+	public static ConsoleEx c = ConsoleEx.console();
+	
+	public static void main(String[] args)
+	{			
+		Vector<Float> numbers = new Vector<Float>();
+		String input = "";
+		
+		Write(new Object[] {"Podaj liczby. Wpisz STOP aby zakonczyc"});		
+		
+		input = ReadLine("Podaj liczbe: ");
+				
+		while(!input.equals("STOP"))
+		{						
+			numbers.add(Float.parseFloat(input));		
+			input = ReadLine("Podaj liczbe: ");
+		}		
+		
+		float sum = Sum(numbers);
+		float diff = Diff(numbers);
+		float mult = Multiply(numbers);
+		float div = Divide(numbers);
+		
+		Write(new Object[] {"Suma: ", sum, IntConvertToBinary(sum)});		
+		Write(new Object[] {"Roznica: ", diff, IntConvertToBinary(diff)});
+		Write(new Object[] {"Iloczyn: ", mult, IntConvertToBinary(mult)});
+		Write(new Object[] {"Iloraz: ", div, IntConvertToBinary(div)});		
+	}
+	
+	public static void Write(Object[] text)
+	{
+		for(int i = 0; i < text.length; i++)
+		{
+			System.out.println(text[i] + " ");
+		}		
+	}	
+	
+	public static String ReadLine(String info)
+	{
+		String input = "";
+
+		try
+		{
+			input = c.readLine(info);
+		}
+		catch (IOException e)
+		{
+			e.addSuppressed(e);
+		}
+		
+		return input;
+	}
+	
+	public static float Sum(Vector<Float> numbers)
+	{
+		float res = 0;
+		
+		for(float value : numbers)
+		{
+			res += value;
+		}
+		
+		return res;
+	}
+	
+	public static float Diff(Vector<Float> numbers)
+	{
+		float res = numbers.elementAt(0);
+		float help = numbers.elementAt(0);
+		numbers.remove(0);
+		
+		for(float value : numbers)
+		{
+			res -= value;
+		}		
+		
+		numbers.add(0, help);
+		
+		return res;
+	}
+	
+	public static float Multiply(Vector<Float> numbers)
+	{
+		float res = 1;
+		
+		for(float value : numbers)
+		{
+			res *= value;
+		}		
+		
+		return res;
+	}
+	
+	public static float Divide(Vector<Float> numbers)
+	{
+		float res = numbers.elementAt(0);
+		float help = numbers.elementAt(0);
+		numbers.remove(0);	
+		
+		for(float value : numbers)
+		{
+			res /= value;
+		}	
+		
+		numbers.add(0, help);
+		
+		return res;
+	}
+	
+	public static String IntConvertToBinary(float value)
+	{
+		int helpValue = Math.round(value);
+		
+		String res = "";
+		String help = "";
+		
+		while(helpValue > 0)
+		{
+			if(helpValue%2 == 0)
+			{
+				help = "0";
+				help = help.concat(res);
+				res = help;
+			}
+			else
+			{
+				help = "1";
+				help = help.concat(res);
+				res = help;
+			}
+			
+			helpValue /= 2;
+		}	
+
+		return res;
+	}
+}
