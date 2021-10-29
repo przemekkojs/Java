@@ -38,37 +38,72 @@ public class GameManager
 
 	public void MoveEnemy(Enemy enemy, String[] pool)
 	{
-		Random rand = new Random();
-		
-		int move = rand.nextInt(4);
-		
-		switch(move)
+		if(pool[enemy.Y + 1].charAt(enemy.X) == 'P')
 		{
-		case 0:
-			if(pool[enemy.Y - 1].charAt(enemy.X) != 'X')
+			enemy.Y++;
+		}
+		else if(pool[enemy.Y - 1].charAt(enemy.X) == 'P')
+		{
+			enemy.Y--;
+		}
+		else if(pool[enemy.Y].charAt(enemy.X + 1) == 'P')
+		{
+			enemy.X++;
+		}
+		else if(pool[enemy.Y].charAt(enemy.X - 1) == 'P')
+		{
+			enemy.X--;
+		}
+		else
+		{
+			Random rand = new Random();
+			
+			int move = rand.nextInt(2);
+			int moveValue = rand.nextInt(2);
+
+			if(moveValue == 0)
 			{
-				enemy.Y--;
+				moveValue = -1;
 			}
-			break;
-		case 1:
-			if(pool[enemy.Y + 1].charAt(enemy.X) != 'X')
+			
+			switch(move)
 			{
-				enemy.Y++;
-			}
-			break;
-		case 2:
-			if(pool[enemy.Y].charAt(enemy.X + 1) != 'X')
-			{
-				enemy.X++;
-			}
-			break;
-		case 3:
-			if(pool[enemy.Y].charAt(enemy.X - 1) != 'X')
-			{
-				enemy.X--;
-			}
-			break;
-		}		
+			case 0:
+				if(pool[enemy.Y + moveValue].charAt(enemy.X) != 'X')
+				{				
+					enemy.Y += moveValue;
+				}
+				else 
+				{
+					if(pool[enemy.Y].charAt(enemy.X + 1) != 'X')
+					{
+						enemy.X++;
+					}
+					else if(pool[enemy.Y].charAt(enemy.X - 1) != 'X')
+					{
+						enemy.X--;
+					}
+				}
+				break;
+			case 1:
+				if(pool[enemy.Y].charAt(enemy.X + moveValue) != 'X')
+				{				
+					enemy.X += moveValue;
+				}
+				else 
+				{
+					if(pool[enemy.Y + 1].charAt(enemy.X) != 'X')
+					{
+						enemy.Y++;
+					}
+					else if(pool[enemy.Y - 1].charAt(enemy.X) != 'X')
+					{
+						enemy.Y--;
+					}
+				}
+				break;
+			}		
+		}				
 	}
 	
 	public void SpawnEnemies(Vector<Enemy> enemies, String[] pool)
