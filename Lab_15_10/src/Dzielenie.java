@@ -1,10 +1,9 @@
-
 public class Dzielenie {
 
 	public static void main(String[] args) 
 	{
 		int x = 10;
-		int y = 2;
+		int y = 0;
 		
 		if(y != 0)
 		{
