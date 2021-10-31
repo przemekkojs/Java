@@ -7,6 +7,6 @@ public class Prog
 	{		
 		System.out.println(Wielomian.Czebyszew(0, 3));
 		System.out.println(Wielomian.Czebyszew(1, 3));
-		System.out.println(Wielomian.Czebyszew(4, 3));
+		System.out.println(Wielomian.Czebyszew(7, 3));
 	}
 }

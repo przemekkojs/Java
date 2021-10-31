@@ -1,7 +1,7 @@
 package Wielomian;
 
 public class Wielomian 
-{
+{	
 	public static double Czebyszew(int n, double x)
 	{
 		double T0 = 1;
