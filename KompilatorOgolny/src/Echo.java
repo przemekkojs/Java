@@ -35,8 +35,9 @@ public class Echo {
 		String move = "";
 		
 		int moves = 10;		
+		int movePenalty = 0;
 		
-		scene = pool.LoadPool("C:\\Programming\\Eclipse\\KompilatorOgolny\\src\\pool.txt");	
+		scene = pool.LoadPool("C:\\Programming\\Eclipse\\Java\\KompilatorOgolny\\src\\pool.txt");	
 		scene = pool.OverwriteAt(player.Body.charAt(0), player.X, player.Y, scene);
 		manager.SpawnEnemies(enemies, scene);
 		
@@ -52,13 +53,13 @@ public class Echo {
 		{
 			try 
 			{
-				move = c.readLine();
+				move = c.readLine();				
 			} 
 			catch (IOException e) 
 			{
 				System.out.println("Input error");
 				e.printStackTrace();
-			}			
+			}
 			
 			scene = pool.OverwriteAt(' ', player.X, player.Y, scene);			
 			manager.Move(move.charAt(0), player, scene);
@@ -66,10 +67,12 @@ public class Echo {
 			if(manager.Point('.', player, scene))
 			{
 				moves += 2;
+				movePenalty = 0;
 			}
 			else
 			{
-				moves--;
+				moves -= movePenalty;
+				movePenalty++;
 			}
 			
 			scene = pool.OverwriteAt(player.Body.charAt(0), player.X, player.Y, scene);	
@@ -80,6 +83,7 @@ public class Echo {
 				manager.MoveEnemy(e, scene);
 				scene = pool.OverwriteAt(e.Body.charAt(0), e.X, e.Y, scene);	
 			}
+			
 			pool.WritePool(scene);
 			System.out.println(String.format("Points: %d", moves));
 		}

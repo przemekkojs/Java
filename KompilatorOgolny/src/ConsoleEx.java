@@ -35,7 +35,7 @@ public class ConsoleEx {
 	public String readLine(String label) throws IOException
 	{
 		if (systemConsole != null)
-		{
+		{			
 			return systemConsole.readLine("system console - " + label);
 		}
 		
