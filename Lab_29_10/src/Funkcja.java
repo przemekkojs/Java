@@ -1,15 +1,18 @@
-public class Funkcja {
+public class Funkcja
+{
 
 	public static void main(String[] args) 
 	{		
-		System.out.print(S(10, 10));
+		System.out.println(S(3, -2));
+		System.out.println(S(3, 0));
+		System.out.println(S(3, 3));
 	}
 	
 	public static double S(int n, double x)
 	{
 		if(x < -1)
 		{
-			return 2/3;
+			return 2.0d/3.0d;
 		}
 		else if(x >= -1 && x <= 1)
 		{
@@ -24,7 +27,7 @@ public class Funkcja {
 		double res = 0;
 		int fact = 1;
 		
-		for(int i = 0; i < n; i++)
+		for(int i = 1; i <= n; i++)
 		{
 			res += (x + i)/fact;			
 			fact *= (i + 1);
