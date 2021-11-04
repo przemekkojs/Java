@@ -102,8 +102,8 @@ public class GameManager
 					}
 				}
 				break;
-			}		
-		}				
+			}
+		}
 	}
 	
 	public void SpawnEnemies(Vector<Enemy> enemies, String[] pool)
