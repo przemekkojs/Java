@@ -12,6 +12,7 @@ public class TablicaJednowymiarowa {
 			tab[index] = rand.nextInt(50);
 		}
 		
+		System.out.print("Tab: ");
 		PrintTab(tab);
 		System.out.println(); //Quick enter
 		System.out.println("Min: " + MinValue(tab));

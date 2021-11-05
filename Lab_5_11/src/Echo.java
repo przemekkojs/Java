@@ -14,7 +14,7 @@ public class Echo {
 			System.out.print("Wzrost o 1: ");
 			roslina.Pokaz();
 			
-			zwierzak.Zjedz(roslina, 2);
+			zwierzak.Zjedz(roslina, 4);
 			System.out.print("Zwierzak zjada o 2: ");
 			roslina.Pokaz();
 			
