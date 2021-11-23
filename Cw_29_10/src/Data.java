@@ -1,8 +1,8 @@
 public class Data 
 {
-	public static int Day;
-	public static int Month;
-	public static int Year;
+	public int Day;
+	public int Month;
+	public int Year;
 	
 	public Data(int day, int month, int year)
 	{
@@ -11,42 +11,42 @@ public class Data
 		Year = year;
 	}
 	
-	public static int GetDay() 
+	public int GetDay() 
 	{
 		return Day;
 	}
 	
-	public static int GetMonth() 
+	public int GetMonth() 
 	{
 		return Month;
 	}
 	
-	public static int GetYear() 
+	public int GetYear() 
 	{
 		return Year;
 	}
 	
-	public static void SetDay(int newDay)
+	public void SetDay(int newDay)
 	{
 		Day = newDay;
 	}
 	
-	public static void SetMonth(int newMonth)
+	public void SetMonth(int newMonth)
 	{
 		Month = newMonth;
 	}
 	
-	public static void SetYear(int newYear)
+	public void SetYear(int newYear)
 	{
 		Year = newYear;
 	}
 	
-	public static void Display()
+	public void Display()
 	{
 		System.out.printf("%d.%d.%d", Day, Month, Year);
 	}
 	
-	public static void SetDate(int newDay, int newMonth, int newYear)
+	public void SetDate(int newDay, int newMonth, int newYear)
 	{
 		Day = newDay;
 		Month = newMonth;
