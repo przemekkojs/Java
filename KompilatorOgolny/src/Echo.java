@@ -13,7 +13,7 @@ public class Echo {
 		player.X = 1;
 		player.Y = 1;
 		
-		int nOfEnemies = 5;
+		int nOfEnemies = 20;
 		
 		try 
 		{
@@ -61,9 +61,13 @@ public class Echo {
 				e.printStackTrace();
 			}
 			
-			scene = pool.OverwriteAt(' ', player.X, player.Y, scene);			
-			manager.Move(move.charAt(0), player, scene);
+			scene = pool.OverwriteAt(' ', player.X, player.Y, scene);		
 			
+			if(move.length() > 0)
+			{
+				manager.Move(move.charAt(0), player, scene);
+			}
+						
 			if(manager.Point('.', player, scene))
 			{
 				moves += 2;

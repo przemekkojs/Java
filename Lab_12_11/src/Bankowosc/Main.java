@@ -12,11 +12,11 @@ public class Main
 		
 		for(int index = 0; index < bank.length; index++)
 		{
-			bank[index] = new Konto(Math.abs(random.nextInt(50)), random.nextDouble());
+			bank[index] = new Konto(Math.abs(random.nextInt(50)), Math.round((1000d*random.nextDouble()) * 100d) / 100d);
 		}
 		
 		Show(bank);
-		System.out.printf("Bogacz: %d: %f%n", Bogacz(bank).GetNumerKonta(), Bogacz(bank).GetSaldo());
+		System.out.printf("Bogacz: numer konta %2d, saldo %3.2f%n", Bogacz(bank).GetNumerKonta(), Bogacz(bank).GetSaldo());
 	}
 	
 	public static void Show(Konto[] bank)

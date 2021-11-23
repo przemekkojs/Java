@@ -39,6 +39,6 @@ public class Konto
 	
 	public void GetStan()
 	{
-		System.out.printf("Numer konta: %d Saldo: %f%n", this.numerKonta, this.saldo);
+		System.out.printf("Numer konta: %2d Saldo: %3.2f%n", this.numerKonta, this.saldo);
 	}
 }

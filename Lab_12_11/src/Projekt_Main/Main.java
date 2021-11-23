@@ -20,10 +20,18 @@ public class Main {
 		ShowAll(kwiaciarnia, 7);
 		
 		System.out.println();
-		System.out.println("Florysta sprzedal kwiatki: ");
+		System.out.println("Florysta sprzedal kwiatki: 1, 3, 4");
 		Florysta.SprzedajBukiet(kwiaciarnia[1]);
 		Florysta.SprzedajBukiet(kwiaciarnia[3]);
 		Florysta.SprzedajBukiet(kwiaciarnia[4]);
+		
+		ShowAll(kwiaciarnia, 7);
+		
+		System.out.println();
+		System.out.println("Florysta zrobi³ kwiatki: 1, 3, 4");
+		Florysta.TworzBukiet(kwiaciarnia[1]);
+		Florysta.TworzBukiet(kwiaciarnia[3]);
+		Florysta.TworzBukiet(kwiaciarnia[4]);
 		
 		ShowAll(kwiaciarnia, 7);
 	}
