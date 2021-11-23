@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Cw_22_10/src"/>
+	<classpathentry kind="src" path="Cw_29_10/src"/>
+	<classpathentry kind="src" path="cw_5_11/src"/>
+	<classpathentry kind="src" path="KompilatorOgolny/src"/>
+	<classpathentry kind="src" path="Lab_12_11/src"/>
+	<classpathentry kind="src" path="Lab_15_10/src"/>
+	<classpathentry kind="src" path="Lab_22_10/src"/>
+	<classpathentry kind="src" path="Lab_29_10/src"/>
+	<classpathentry kind="src" path="Lab_5_11/src"/>
+	<classpathentry kind="output" path="Cw_22_10/bin"/>
+</classpath>
