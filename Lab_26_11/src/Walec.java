@@ -22,8 +22,8 @@ public final class Walec extends Bryla
 
 	@Override
 	public double Pole() 
-	{
-		return 2 * Math.PI * r * (r + super.GetWysokosc());
+	{		
+		return ((2 * Math.PI * r * (r + super.GetWysokosc())) / 100d) * 100d;
 	}
 	
 	@Override
