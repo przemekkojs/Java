@@ -5,11 +5,11 @@ public class Rysunki
 	
 	public static void main(String[] args) 
 	{		
-		bryly[0] = new Walec();
-		bryly[1] = new Prostopadloscian();
-		bryly[2] = new Walec(1, 2, "Obrot Kwadratu");
-		bryly[3] = new Prostopadloscian(2, 2, 2, "Szescian");
-		bryly[4] = new Walec(10, 20, "Duzy");
+		bryly[0] = new Walec();		
+		bryly[1] = new Walec(1, 2, "Obrot Kwadratu");
+		bryly[2] = new Walec(10, 20, "Duzy");
+		bryly[3] = new Prostopadloscian();
+		bryly[4] = new Prostopadloscian(2, 2, 2, "Szescian");		
 		bryly[5] = new Prostopadloscian(3, 2, 3, "Prostopadloscian");
 		
 		MaxPool();
