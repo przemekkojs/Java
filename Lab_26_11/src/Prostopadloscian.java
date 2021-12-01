@@ -17,6 +17,16 @@ public final class Prostopadloscian extends Bryla
 		b = _b;		
 	}	
 	
+	public boolean JestSzescianem()
+	{
+		if(a == b && a == super.GetWysokosc())
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public double Objetosc() 
 	{		
@@ -33,15 +43,5 @@ public final class Prostopadloscian extends Bryla
 	public String ToString()
 	{
 		return String.format("Prostopadloscian (%s) [a = %d, b = %d, h = %d]%n", super.GetNazwa(), a, b, super.GetWysokosc());
-	}
-	
-	public boolean JestSzescianem()
-	{
-		if(a == b && a == super.GetWysokosc())
-		{
-			return true;
-		}
-		
-		return false;
-	}
+	}	
 }
