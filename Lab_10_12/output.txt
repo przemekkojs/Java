@@ -1,0 +1,2 @@
+Transakcje z uzyciem karty studenta:
+Numer transakcji: 4, kwota: 80,16zl, Karta klienta numer 51, wlasciciel: Student
