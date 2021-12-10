@@ -1,0 +1,2 @@
+Transakcje z uzyciem karty studenta:
+Numer transakcji: 1, kwota: 1,63zl, Karta klienta numer 94, wlasciciel: Student
