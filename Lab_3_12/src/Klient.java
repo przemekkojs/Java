@@ -22,14 +22,19 @@ public class Klient extends Osoba
 		
 		for(int index = 0; index < liczbaLokat; index++)
 		{			
-			lokaty[index] = new Lokata(random.nextInt(500, 10001), random.nextInt(500, 10001) + random.nextDouble(), random.nextBoolean());
+			lokaty[index] = new Lokata(random.nextInt(9501) + 500, 
+					random.nextInt(9501) + random.nextDouble(), 
+					random.nextBoolean());
 		}
 	}
 	
 	@Override
 	public String ToString()
 	{
-		return String.format("Klient %s, pesel %s: n = %d%n", super.GetNazwisko(), super.GetPesel(), liczbaLokat);
+		return String.format("Klient %s, pesel %s: n = %d%n", 
+				super.GetNazwisko(), 
+				super.GetPesel(), 
+				liczbaLokat);
 	}
 	
 	public void WyswietlLokaty()
