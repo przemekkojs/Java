@@ -3,8 +3,8 @@ import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ConsoleEx {
-
+public class ConsoleEx 
+{
 	private static volatile ConsoleEx cons;
 	
 	private Console systemConsole;

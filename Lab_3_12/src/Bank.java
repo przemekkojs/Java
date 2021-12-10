@@ -80,7 +80,7 @@ public class Bank
 			{				
 				if(((Pracownik) osoby[index]).Oblicz() > curMax)
 				{
-					curMax = ((Pracownik) osoby[index]).Oblicz();
+					curMax = osoby[index].Oblicz();
 					curMaxIndex = index;
 				}
 			}
