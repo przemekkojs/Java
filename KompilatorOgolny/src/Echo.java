@@ -1,12 +1,12 @@
 import java.io.IOException;
 import java.util.Vector;
 
-public class Echo {
-	
+public class Echo 
+{	
 	public static ConsoleEx c = ConsoleEx.console();
 	
 	public static void main(String[] args)
-	{			
+	{
 		Pool pool = new Pool();
 		GameManager manager = new GameManager();
 		Player player = new Player();
@@ -37,7 +37,7 @@ public class Echo {
 		int moves = 10;		
 		int movePenalty = 0;
 		
-		scene = pool.LoadPool("C:\\Programming\\Eclipse\\Java\\KompilatorOgolny\\src\\pool.txt");	
+		scene = pool.LoadPool("D:\\Programming\\Repos\\Eclipse\\Java\\KompilatorOgolny\\src\\pool.txt");	
 		scene = pool.OverwriteAt(player.Body.charAt(0), player.X, player.Y, scene);
 		manager.SpawnEnemies(enemies, scene);
 		
