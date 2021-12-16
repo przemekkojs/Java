@@ -3,6 +3,7 @@ import java.util.Random;
 public class Pracownik extends Osoba
 {
 	private String stanowisko;
+	
 	private int pensja;
 	private int stawka;
 	private int[] nadgodziny;
@@ -33,9 +34,36 @@ public class Pracownik extends Osoba
 		}
 	}
 	
+	private String NumberToDay(int number)
+	{
+		switch(number)
+		{
+		case 0:
+			return "Poniedzialek";
+		case 1:
+			return "Wtorek";
+		case 2:
+			return "Sroda";
+		case 3:
+			return "Czwartek";
+		case 4:
+			return "Piatek";
+		default:
+			return "Sobota";
+		}
+	}
+	
 	public void WyswietlLiczbeNadgodzin()
 	{
-		System.out.printf("Nadgodziny: %d%n", liczNadgodziny());
+		if(nadgodziny != null)
+		{
+			for(int index = 0; index < 6; index++)
+			{
+				System.out.printf(" -> %s, nadgodziny: %d%n", NumberToDay(index), nadgodziny[index]);
+			}
+		}	
+		
+		System.out.printf(" -> Lacznie nadgodzin: %d%n", liczNadgodziny());
 	}	
 	
 	public boolean JestKasjerem()
