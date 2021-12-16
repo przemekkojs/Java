@@ -42,15 +42,23 @@ public class Portfel
 	}
 	
 	public void StanPortfela()
+	{		
+		System.out.printf("Stan portfela:%n%s", this.ToString());		
+	}
+	
+	public String ToString()
 	{
+		String res = "";
+		
 		int index = 0;
-		System.out.printf("Stan portfela:%n");
 		
 		for(SrodekPlatnosci s : srodki)
 		{
-			System.out.print(index + ". " + s.ToString());
+			res += String.format("%d. %s", index, s.ToString());
 			index++;
 		}
+		
+		return res;
 	}
 	
 	public double Lacznie()

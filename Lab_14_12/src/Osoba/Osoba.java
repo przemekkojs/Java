@@ -1,12 +1,14 @@
 package Osoba;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import Portfel.Portfel;
 import Portfel.SrodekPlatnosci;
 
-public class Osoba 
-{
+public class Osoba implements Serializable
+{	
+	private static final long serialVersionUID = 1L;
 	private static double zadluzenie;
 	private static Portfel portfel;
 	

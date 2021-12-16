@@ -1,5 +1,6 @@
 package Terminal;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
@@ -8,6 +9,7 @@ import Osoba.Osoba;
 import Portfel.KartaDebetowa;
 import Portfel.Portfel;
 import Portfel.SrodekPlatnosci;
+import Serializacja.Serializator;
 
 public class Kasa 
 {
@@ -15,10 +17,10 @@ public class Kasa
 	private static Random random;
 	private static Scanner scanner;
 	
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException, ClassNotFoundException
 	{
 		random = new Random();
-		scanner = new Scanner(System.in);
+		scanner = new Scanner(System.in);		
 		
 		String input = "";
 		Vector<Integer> produkty = new Vector<Integer>();		
@@ -29,7 +31,7 @@ public class Kasa
 				new KartaDebetowa(random.nextInt(1000), 200), 
 				new KartaDebetowa(random.nextInt(1000), 200), 
 				new SrodekPlatnosci("Gotowka", 200)
-				}));	
+				}));		
 		
 		double start = osoba.GetPortfel().Lacznie();
 	
@@ -142,11 +144,14 @@ public class Kasa
 		
 		if(input.equals("STOP"))
 		{
-			System.out.printf("Koniec gry. Wynik: %.2f", osoba.GetPortfel().Lacznie() - start - osoba.Zadluzenie());
+			System.out.printf("Koniec gry. Wynik: %.2f%n%n", osoba.GetPortfel().Lacznie() - start - osoba.Zadluzenie());
 		}
 		else
 		{
-			System.out.println("Portfel jest pusty. Przegrales!");
+			System.out.println("Portfel jest pusty. Przegrales!\n");
 		}		
+		
+		Serializator.Zapisz(osoba, "osoba.txt");
+		Serializator.Odczytaj("osoba.txt");
 	}	
 }
