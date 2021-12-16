@@ -1,34 +1,85 @@
 package Portfel;
 
+import Platnosci.MetodaPlatnosci;
+import Platnosci.Platnosc;
+
 public class Portfel 
 {
-	private Karta karta;
-	private Gotowka gotowka;
+	private SrodekPlatnosci[] srodki;
 	
 	public Portfel()
 	{
-		karta = null;
-		gotowka = null;
+		srodki = null;
 	}
 	
-	public Portfel(Karta _karta, Gotowka _gotowka)
+	public Portfel(SrodekPlatnosci[] _srodki)
 	{
-		karta = _karta;
-		gotowka = _gotowka;
+		srodki = _srodki;
+	}
+	
+	public void Zaplac(double cena)
+	{
+		MetodaPlatnosci metoda = new MetodaPlatnosci(new Platnosc());
+		int index = 0;
+		
+		while(index < this.GetSrodki().length && cena > 0)
+		{			
+			System.out.printf("Pozostalo do zaplaty: %.2f, %s", cena, this.GetSrodki()[index].ToString());			
+			double zaplacono = this.GetSrodki()[index].GetStan();			
+			metoda.Zaplac(this.GetSrodki()[index], cena);
+			cena -= zaplacono;
+			index++;			
+		}	
+		
+		if(cena > 0)
+		{
+			System.out.printf("Nie udalo sie zaplacic%n----------------------------%n");
+		}
+		else
+		{
+			System.out.printf("Udalo sie zaplacic%n----------------------------%n");
+		}	
 	}
 	
 	public void StanPortfela()
 	{
-		System.out.printf("Stan portfela:%n%s%s", karta.ToString(), gotowka.ToString());
+		int index = 0;
+		System.out.printf("Stan portfela:%n");
+		
+		for(SrodekPlatnosci s : srodki)
+		{
+			System.out.print(index + ". " + s.ToString());
+			index++;
+		}
 	}
 	
-	public Karta GetKarta()
+	public double Lacznie()
 	{
-		return karta;
+		double res = 0;
+		
+		for(SrodekPlatnosci s : srodki)
+		{
+			res += s.GetStan();
+		}
+		
+		return res;
 	}
 	
-	public Gotowka GetGotowka()
+	public SrodekPlatnosci[] GetSrodki()
 	{
-		return gotowka;
+		return srodki;
+	}
+	
+	public boolean CzyPusty()
+	{		
+		for(SrodekPlatnosci s : srodki)
+		{
+			if(s.GetStan() > 0)
+			{
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }

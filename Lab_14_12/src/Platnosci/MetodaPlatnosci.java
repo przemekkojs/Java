@@ -1,6 +1,6 @@
 package Platnosci;
 
-import Portfel.Portfel;
+import Portfel.SrodekPlatnosci;
 
 public class MetodaPlatnosci 
 {
@@ -11,8 +11,8 @@ public class MetodaPlatnosci
 		p = _p;
 	}
 	
-	public void Zaplac(Portfel portfel, double cena)
+	public void Zaplac(SrodekPlatnosci srodek, double cena)
 	{
-		p.Plac(portfel, cena);
+		p.Plac(srodek, cena);
 	}
 }
