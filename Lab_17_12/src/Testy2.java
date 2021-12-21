@@ -12,7 +12,7 @@ public class Testy2
 		}
 		catch (ArithmeticException e)
 		{
-			System.out.println("Czas: " + (System.nanoTime() - start));
+			System.out.println("Czas d: " + (System.nanoTime() - start));
 			e.printStackTrace();
 		}		
 	}
@@ -27,7 +27,7 @@ public class Testy2
 		}
 		catch (ArithmeticException e)
 		{			
-			System.out.println("Czas: " + (System.nanoTime() - start));
+			System.out.println("Czas g: " + (System.nanoTime() - start));
 			e.printStackTrace();
 		}		
 	}

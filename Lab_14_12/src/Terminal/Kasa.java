@@ -151,7 +151,9 @@ public class Kasa
 			System.out.println("Portfel jest pusty. Przegrales!\n");
 		}		
 		
-		Serializator.Zapisz(osoba, "osoba.txt");
-		Serializator.Odczytaj("osoba.txt");
+		Serializator.Zapisz(new Osoba[] {osoba}, "osoba.txt");		
+		Serializator.Zapisz(new SrodekPlatnosci[] {osoba.GetPortfel().GetSrodki()[0], osoba.GetPortfel().GetSrodki()[1], osoba.GetPortfel().GetSrodki()[2]}, "srodek.txt");		
+		System.out.print(Serializator.OdczytajSrodek("srodek.txt").ToString());
+		System.out.print(Serializator.Odczytaj("osoba.txt").GetPortfel().ToString());
 	}	
 }

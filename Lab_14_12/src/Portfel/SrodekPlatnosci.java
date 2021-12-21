@@ -1,7 +1,10 @@
 package Portfel;
 
-public class SrodekPlatnosci 
+import java.io.Serializable;
+
+public class SrodekPlatnosci implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private double pieniadze;
 	private String nazwa;
 	

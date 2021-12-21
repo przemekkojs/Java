@@ -7,30 +7,53 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import Osoba.Osoba;
+import Portfel.SrodekPlatnosci;
 
 public class Serializator 
 {
-	public static void Zapisz(Osoba obj, String fileName) throws IOException
+	public static void Zapisz(Osoba[] obj, String fileName) throws IOException
 	{
 		FileOutputStream fos = new FileOutputStream(fileName);		
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		
-		oos.writeObject(obj);
+		for(Osoba o : obj)
+		{
+			oos.writeObject(o);	
+		}
+			
+		oos.close();
+	}	
+	
+	public static void Zapisz(SrodekPlatnosci[] obj, String fileName) throws IOException
+	{
+		FileOutputStream fos = new FileOutputStream(fileName);		
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		
+		for(SrodekPlatnosci s : obj)
+		{
+			oos.writeObject(s);		
+		}	
 		
 		oos.close();
 	}	
 	
-	public static void Odczytaj(String fileName) throws IOException, ClassNotFoundException
+	public static Osoba Odczytaj(String fileName) throws IOException, ClassNotFoundException
 	{
 		FileInputStream fis = new FileInputStream(fileName);		
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		
 		Osoba os = (Osoba) ois.readObject();
-		
-		System.out.println("Info: ");
-		System.out.println("Zadluzenie: " + os.Zadluzenie());
-		System.out.println("Stan Portfela: " + os.GetPortfel().ToString());
-		
 		ois.close();
+		return os;
+	}
+	
+	public static SrodekPlatnosci OdczytajSrodek(String fileName) throws IOException, ClassNotFoundException
+	{
+		FileInputStream fis = new FileInputStream(fileName);		
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		SrodekPlatnosci os = (SrodekPlatnosci) ois.readObject();
+		ois.close();
+		return os;
 	}
 }

@@ -2,6 +2,7 @@ package Portfel;
 
 public class KartaDebetowa extends SrodekPlatnosci
 {
+	private static final long serialVersionUID = 1L;
 	private int numer;
 	
 	public KartaDebetowa()

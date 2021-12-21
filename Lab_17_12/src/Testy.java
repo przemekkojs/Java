@@ -12,7 +12,7 @@ public class Testy
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{
-			System.out.println("Czas: " + (System.nanoTime() - start));
+			System.out.println("Czas g: " + (System.nanoTime() - start));
 		}		
 	}
 	
@@ -27,7 +27,7 @@ public class Testy
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{			
-			System.out.println("Czas: " + (System.nanoTime() - start));
+			System.out.println("Czas d: " + (System.nanoTime() - start));
 			e.printStackTrace();
 		}		
 	}
