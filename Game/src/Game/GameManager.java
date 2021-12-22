@@ -1,12 +1,13 @@
 package Game;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
 import Map.Map;
 import Map.MapProcessor;
 import Player.Player;
-import Processors.Constants;
+import Processors.EntityProcessor;
 import Processors.Logger;
 
 public class GameManager 
@@ -14,35 +15,45 @@ public class GameManager
 	private static Player player;
 	private static Map map;	
 	
-	public static void main(String[] args) throws IOException 
-	{
-		Initialize();
-		Game();
+	public static void main(String[] args) 
+	{					
+		UI.InitializeGameArea();
+		UI.InitializeLogArea();		
+		Initialize();		
+		UI.InitializeControls(player, map);
+		UI.InitializePanels();
+		UI.InitializeFrame();	
 	}
 	
-	private static void Initialize() throws IOException
+	private static void Initialize()
 	{
-		Logger.Log(String.format("Welcome!%n"));
-		Logger.Log(String.format("%s%n%n", Constants.LOADING_PLAYER));
-		
-		map = new Map();		
-		player = MapProcessor.Spawn(map.GetStage());
+		Logger.Log(String.format("Welcome!%n"));		
+		map = new Map();			
+		player = EntityProcessor.Spawn(map.GetStage());		
 	}
 	
 	private static void Game()
-	{		
-		Scanner scanner = new Scanner(System.in);
+	{				
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;
 		
-		while(player.Alive() && (input = scanner.next()) != null && input.length() > 0)
-		{
-			MapProcessor.Draw(map.GetStage());
-			player.Action(input, map.GetStage());	
-			map.Update(player);
-			Logger.Clear();
-		}
+		try 
+		{			
+			while(player.Alive() && (input = br.readLine()) != "")
+			{					
+				player.Action(input, map.GetStage());	
+				map.Update(player);				
+				MapProcessor.Draw(map.GetStage());
+				Logger.Clear();
+			}
+			
+			br.close();
+		} 
+		catch (IOException e) 
+		{			
+			e.printStackTrace();
+		}		
 		
-		scanner.close();
 		Logger.Log(String.format("Thank you for playing!%n"));
 	}
 }

@@ -1,10 +1,9 @@
 package Map;
 
-import java.io.IOException;
-
 import Enemy.Enemy;
 import Player.Player;
 import Processors.Constants;
+import Processors.EntityProcessor;
 import Processors.Logger;
 
 public class Map 
@@ -12,15 +11,14 @@ public class Map
 	private static char[][] stage;
 	private static Enemy[] enemies;
 	
-	public Map() throws IOException
+	public Map()
 	{			
-		
 		Logger.Log(String.format("%s%n", Constants.LOADING_MAP));
 		stage = MapProcessor.LoadStage();		
-		Logger.Log(String.format("%s%n", Constants.MAP_LOADED_SUCCESS));	
-		Logger.Log(String.format("%s%n", Constants.ERR_LOADING_MAP));			
+		Logger.Log(String.format("%s%n", Constants.MAP_LOADED_SUCCESS));					
 		
-		enemies = MapProcessor.Spawn(stage, Constants.ENEMIES_AT_MAP);
+		enemies = new Enemy[Constants.ENEMIES_AT_MAP];
+		enemies = EntityProcessor.Spawn(stage, Constants.ENEMIES_AT_MAP);
 	}
 	
 	public void Update(Player player)

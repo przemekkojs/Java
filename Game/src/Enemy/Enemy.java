@@ -9,6 +9,7 @@ public class Enemy extends Entity
 	{
 		super.X = x;
 		super.Y = y;
+		super.SetLastPosition(x, y);
 		super.Health = Constants.MAX_ENEMY_HEALTH;
 	}
 }

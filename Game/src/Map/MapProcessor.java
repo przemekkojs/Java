@@ -2,20 +2,32 @@ package Map;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 import Enemy.Enemy;
 import Player.Player;
 import Processors.Constants;
+import Processors.Logger;
 
 public class MapProcessor 
-{
-	public static char[][] LoadStage() throws IOException
+{	
+	public static char[][] LoadStage()
 	{
-		BufferedReader br = new BufferedReader(new FileReader(new File(Constants.MAIN_MAP_FILE)));
+		BufferedReader br = null;
+		
+		try 
+		{
+			br = new BufferedReader(new FileReader(new File(Constants.MAIN_MAP_FILE)));
+		} 
+		catch (FileNotFoundException e) 
+		{
+			Logger.Log(String.format("%n%n", Constants.ERR_FILE_NOT_FOUND));
+			Logger.Log(String.format("%n%n", Constants.ERR_LOADING_MAP));
+		}
+		
 		List<String> lines = br.lines().toList();		
 		char[][] res = new char[lines.size()][];
 		
@@ -24,7 +36,15 @@ public class MapProcessor
 			res[line] = lines.get(line).toCharArray();			
 		}
 		
-		br.close();
+		try 
+		{
+			br.close();
+		} 
+		catch (IOException e) 
+		{
+			Logger.Log(String.format("%n%n", Constants.ERR_CLOSE));
+		}
+		
 		return res;
 	}
 	
@@ -33,54 +53,27 @@ public class MapProcessor
 		char[][] res = oldScene;
 		
 		res[player.GetY()][player.GetX()] = Constants.PLAYER_BODY;
+		res[player.GetLastY()][player.GetLastX()] = ' ';
 		
 		for(Enemy e : enemies)
 		{
-			res[e.GetX()][e.GetY()] = Constants.ENEMY_BODY;
+			res[e.GetLastY()][e.GetLastX()] = ' ';
+			res[e.GetY()][e.GetX()] = Constants.ENEMY_BODY;			
 		}
 		
 		return res;
-	}
-	
-	public static Enemy[] Spawn(char[][] scene, int count)
-	{
-		Random random = new Random();
-		Enemy[] res = new Enemy[count];
-		
-		for(int index = 0; index < count; index++)
-		{			
-			int bound = scene[0].length - 1;
-			
-			res[index] = new Enemy(random.nextInt(bound) + 1, random.nextInt(bound) + 1);	
-			System.out.println(scene[res[index].GetY()]);
-			
-			while(scene[res[index].GetY()][res[index].GetX()] == (Constants.SCENE_BLOCK))
-			{
-				res[index] = new Enemy(random.nextInt(bound) + 1, random.nextInt(bound) + 1);	
-			}
-		}
-		
-		return res;
-	}
-	
-	public static Player Spawn(char[][] scene)
-	{
-		Random random = new Random();
-		Player res = new Player(random.nextInt(scene[0].length) + 1, random.nextInt(scene.length) + 1);	
-		
-		while(scene[res.GetY()][res.GetY()] == Constants.SCENE_BLOCK)
-		{
-			res = new Player(random.nextInt(scene[0].length - 1) + 1, random.nextInt(scene.length - 1) + 1);	
-		}
-		
-		return res;
-	}
+	}	
 	
 	public static void Draw(char[][] scene)
 	{
 		for(int y = 0; y < scene.length; y++)
 		{
-			System.out.println(scene[y]);
+			for(int x = 0; x < scene[y].length; x++)
+			{
+				System.out.print(scene[y][x]);
+			}
+			
+			System.out.println();
 		}
 	}
 }

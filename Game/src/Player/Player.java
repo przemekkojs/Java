@@ -16,7 +16,7 @@ public class Player extends Entity
 	private Item CurrentItem;
 	
 	public Player(int x, int y)
-	{
+	{		
 		super.X = x;
 		super.Y = y;
 		super.Health = Constants.MAX_HEALTH;
@@ -24,9 +24,7 @@ public class Player extends Entity
 		Food = Constants.MAX_FOOD;
 		Inventory = new Item[Constants.INVENTORY_SIZE];
 		Medkits = new Medkit(10);
-		CurrentItem = Inventory[0];
-		
-		Logger.Log(String.format("%s%n%n", Constants.PLAYER_LOADED_SUCCESS));
+		CurrentItem = Inventory[0];		
 	}
 	
 	public void Action(String key, char[][] stage)
@@ -65,22 +63,18 @@ public class Player extends Entity
 		}
 	}
 	
-	public boolean Alive()
+	public Item GetCurrenItem()
 	{
-		if(Health > 0)
-		{
-			return true;
-		}
-		
-		return false;
+		return CurrentItem;
 	}
 	
 	private void Move(int newX, int newY, char[][] stage)
 	{
 		if(stage[newY][newX] != Constants.SCENE_BLOCK)
 		{
-			X = newX;
-			Y = newY;
+			super.SetLastPosition(X, Y);
+			super.X = newX;
+			super.Y = newY;
 		}
 		
 		CheckPool(X, Y, stage);
@@ -88,7 +82,7 @@ public class Player extends Entity
 	
 	private void CheckPool(int x, int y, char[][] stage)
 	{
-		switch(stage[x][y])
+		switch(stage[y][x])
 		{
 		case Constants.FOOD_BLOCK:
 			Food++;
