@@ -2,7 +2,6 @@ package Main;
 
 import java.util.Random;
 
-import Constants.Constants;
 import Managers.GameManager;
 import Managers.SceneManager;
 import Objects.BigEnemy;
@@ -35,8 +34,7 @@ public class Main
 		while(small.Active() || medium.Active() || big.Active())
 		{			
 			gameManager.Turn();
-			gameManager.NotifyAll(Constants.MOVE_PLAYER);			
-			gameManager.NotifyAll(Constants.MOVE_ENEMIES);			
+			gameManager.NotifyAll();
 			gameManager.MovePoint();			
 			sceneManager.WriteStage(help);
 		}
@@ -45,7 +43,7 @@ public class Main
 		System.out.printf("B: %d%n", big.GetPoints());
 		System.out.printf("M: %d%n", medium.GetPoints());
 		System.out.printf("S: %d%n", small.GetPoints());
-		System.out.printf("P: %d%n", player.GetPoints());
+		System.out.printf("P: %d%n", player.GetPoints());		
 	}
 	
 	private static void InitializeObjects()
@@ -55,9 +53,7 @@ public class Main
 		medium = new MediumEnemy(random.nextInt(1, 9), random.nextInt(1, 9));
 		big = new BigEnemy(random.nextInt(1, 9), random.nextInt(1, 9));
 		
-		point = new Point(random.nextInt(1, 9), random.nextInt(1, 9));
-		
-		help = new Entity[] {player, small, medium, big};
+		point = new Point(random.nextInt(1, 9), random.nextInt(1, 9));		
 		
 		gameManager = new GameManager();
 		sceneManager = new SceneManager(point);
@@ -65,7 +61,8 @@ public class Main
 		gameManager.Attach(player);		
 		gameManager.Attach(small);		
 		gameManager.Attach(medium);		
-		gameManager.Attach(big);		
-		gameManager.Attach(point);
+		gameManager.Attach(big);
+		
+		help = new Entity[] {player, small, medium, big};
 	}
 }

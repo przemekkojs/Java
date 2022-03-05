@@ -8,4 +8,11 @@ public class SmallEnemy extends Entity
 	{
 		super(x, y, Constants.SMALL_ENEMY_BODY);		
 	}
+	
+	@Override
+	public void Update() 
+	{		
+		super.Update();
+		super.Update();
+	}
 }

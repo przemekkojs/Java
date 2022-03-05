@@ -23,6 +23,7 @@ public class GameManager
 		UI.InitializeControls(player, map);
 		UI.InitializePanels();
 		UI.InitializeFrame();	
+		Game();
 	}
 	
 	private static void Initialize()
@@ -39,11 +40,12 @@ public class GameManager
 		
 		try 
 		{			
-			while(player.Alive() && (input = br.readLine()) != "")
+			while(player.Alive() && (input = UI.GetControls()) != "")
 			{					
 				player.Action(input, map.GetStage());	
 				map.Update(player);				
 				MapProcessor.Draw(map.GetStage());
+				UI.Display(map.GetStage());
 				Logger.Clear();
 			}
 			

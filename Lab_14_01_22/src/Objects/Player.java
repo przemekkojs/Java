@@ -17,40 +17,32 @@ public class Player extends Entity
 	}
 	
 	@Override
-	public void Update(String arg) 
-	{	
-		switch(arg)
+	public void Update() 
+	{		
+		try 
 		{
-		case Constants.MOVE_PLAYER:			
-			try 
+			System.out.println("Twój ruch: ");
+			char move = br.readLine().charAt(0);
+			
+			switch(move)
 			{
-				System.out.println("Twój ruch: ");
-				char move = br.readLine().charAt(0);
-				
-				switch(move)
-				{
-				case 'a':
-					Move(-1, 0);					
-					break;
-				case 'd':
-					Move(1, 0);					
-					break;
-				case 's':
-					Move(0, 1);					
-					break;
-				case 'w':
-					Move(0, -1);					
-					break;
-				}
-			} 
-			catch (IOException e) 
-			{				
-				System.out.print("Blad czytania z klawiatury");
-			}					
-			break;
-		default:
-			System.out.printf("%s: %s mnie nie dotyczy%n", GetBody(), arg);
-			break;
+			case 'a':
+				Move(-1, 0);					
+				break;
+			case 'd':
+				Move(1, 0);					
+				break;
+			case 's':
+				Move(0, 1);					
+				break;
+			case 'w':
+				Move(0, -1);					
+				break;
+			}
+		} 
+		catch (IOException e) 
+		{				
+			System.out.print("Blad czytania z klawiatury");
 		}		
 	}
 }

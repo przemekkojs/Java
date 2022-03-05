@@ -1,0 +1,33 @@
+Grupa studentów z miasta S została wysłana na olimpiadę informatyczną.
+Jadą pociągiem. Wszyscy kupili bilety w jednym wagonie, składającym się z n sektorów.
+
+W sektorze mogą się znaleźć maksymalnie 4 osoby na raz.
+
+Jeżeli w sektorze znajduje się 1 lub 2 studentów, to są oni znudzeni.
+Jeżeli w sektorze znajduje się 3 lub 4 studentów, to mają oni zabawę przez całą podróż.
+
+Żeby się zamienić z inną osobą, trzeba ją przekonać, że jest to naprawdę potrzebne, sami studenci
+nie umieją tego zrobić, więc poprosili o pomoc konduktora. Konduktor umie rozmawiać z
+jedną osobą na raz i potrafi skutecznie przekonać takie osoby, by się zamieniły miejscami
+ze studentem.
+
+Konduktor nie chce marnować czasu rozmawiając ze zbyt dużą ilością osób, więc chce wiedzieć
+jaka jest minimalna liczba osób, z którymi trzeba się zamienić. 
+
+Zadanie: znajdź tę liczbę.
+
+Po wszystkich zamianach każdy z sektorów powinien nie zawierać studentów, lub zawierać ich 3 lub 4.
+
+WEJŚCIE:
+Pierwsza linia: n - ilość sektorów w wagonie.
+1 < n < 10⁶
+
+Druga linia: n liczb a₁, a₂, a₃, ... , an - ile studentów jedzie w każdym sektorze.
+
+0 <= ai <= 4.
+
+W pociągu zawsze jedzie minimum jeden student.
+
+WYJŚCIE:
+Najmniejsza liczba osób do zamiany miejsc.
+Jeżeli nie da się tak zrobić, wypisz "-1" (bez "")

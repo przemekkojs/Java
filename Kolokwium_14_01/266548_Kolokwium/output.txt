@@ -1,0 +1,4 @@
+Wykaz towarów nr 12/2020
+Nazwa_towaru	Ilosc_sztuk	Cena
+Laptop	20	2500.00
+Myszka	10	40.00

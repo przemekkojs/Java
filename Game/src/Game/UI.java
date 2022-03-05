@@ -1,7 +1,5 @@
 package Game;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.*;
 
@@ -11,7 +9,6 @@ import Map.Map;
 import Player.Player;
 import Processors.ArrayProcessor;
 import Processors.Constants;
-import Processors.KeyboardSettings;
 import Processors.Logger;
 
 public class UI 
@@ -54,6 +51,7 @@ public class UI
 	public static void InitializeControls(Player player, Map map)
 	{
 		controlField = new JTextField(1);
+		controlField.setText("");
 	}
 	
 	public static void InitializeGameArea()
@@ -109,5 +107,12 @@ public class UI
 	{			
 		System.out.print(ArrayProcessor.CharArrayToString(scene));
 		gameArea.setText(String.format("%s", ArrayProcessor.CharArrayToString(scene)));
+	}
+	
+	public static String GetControls()
+	{		
+		String res = controlField.getText();
+		controlField.setText("");
+		return res;		
 	}
 }

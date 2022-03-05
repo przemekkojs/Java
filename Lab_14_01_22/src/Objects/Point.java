@@ -20,12 +20,9 @@ public class Point extends Entity implements Observer
 	}
 
 	@Override
-	public void Update(String arg) 
-	{
-		if(arg == Constants.MOVE_POINT)
-		{
-			System.out.println("Punkt uciek³!");
-			Move();
-		}
+	public void Update() 
+	{	
+		System.out.println("Punkt uciek³!");
+		Move();		
 	}
 }

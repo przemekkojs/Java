@@ -1,0 +1,5 @@
+Lista studentow kierunku Informatyka
+Nr_indeksu Nazwisko Imie Ocena1 Ocena2 Ocena3
+100000 Nowak Jan 3.0 4.0 5.0
+100001 Maly Adam 3.0 4.0 5.0
+100002 Sredni Adam 3.0 4.0 5.0

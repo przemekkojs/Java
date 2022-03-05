@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import Observable.Observable;
 import Observer.Observer;
-import Constants.*;
 import Objects.Entity;
 
 public class GameManager implements Observable 
@@ -16,7 +15,7 @@ public class GameManager implements Observable
 	{
 		if(turn%15 == 0)
 		{
-			NotifyAll(Constants.MOVE_POINT);
+			NotifyAll();
 		}
 	}
 	
@@ -39,19 +38,19 @@ public class GameManager implements Observable
 	}
 	
 	@Override
-	public void Notify(Observer o, String arg) 
+	public void Notify(Observer o) 
 	{
-		o.Update(arg);
+		o.Update();
 	}
 	
 	@Override
-	public void NotifyAll(String arg) 
+	public void NotifyAll() 
 	{		
 		for(int index = 0; index < observers.size(); index++)
 		{
 			if(((Entity) observers.elementAt(index)).Active())
 			{
-				Notify(observers.elementAt(index), arg);
+				Notify(observers.elementAt(index));
 			}
 			else
 			{

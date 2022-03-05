@@ -2,7 +2,6 @@ package Objects;
 
 import java.util.Random;
 
-import Constants.Constants;
 import Observer.Observer;
 
 public class Entity implements Observer
@@ -87,20 +86,12 @@ public class Entity implements Observer
 	}
 
 	@Override
-	public void Update(String arg) 
-	{
-		switch(arg)
-		{
-		case Constants.MOVE_ENEMIES:
-			Random random = new Random();
-			int moveX = random.nextInt(-1, 2);
-			int moveY = random.nextInt(-1, 2);			
-			
-			Move(moveX, moveY);
-			break;
-		default:
-			System.out.printf("%s: %s mnie nie dotyczy%n", GetBody(), arg);
-			break;
-		}		
+	public void Update() 
+	{		
+		Random random = new Random();
+		int moveX = random.nextInt(-1, 2);
+		int moveY = random.nextInt(-1, 2);			
+		
+		Move(moveX, moveY);			
 	}
 }
