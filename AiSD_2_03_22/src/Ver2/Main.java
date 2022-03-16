@@ -276,15 +276,15 @@ public class Main
 		}		
 	}
 	
-	private static byte[] RandomTab()
+	private static byte[] RandomTab(int count)
 	{
 		Random random = new Random();
 		
-		byte[] tab = new byte[random.nextInt(1, 21)];	
+		byte[] tab = new byte[random.nextInt(count) + 1];	
 
 		for(int i = 0; i < tab.length; i++)
 		{
-			tab[i] = (byte)random.nextInt(0, 5);
+			tab[i] = (byte)random.nextInt(5);
 		}
 		
 		return tab;
@@ -292,6 +292,6 @@ public class Main
 	
 	public static void main(String[] args) 
 	{		
-		Solve(RandomTab());
+		Solve(RandomTab(20));
 	}
 }
