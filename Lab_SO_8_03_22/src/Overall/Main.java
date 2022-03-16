@@ -37,7 +37,7 @@ public class Main
 		SJF.Process();
 		pSJF.Process();
 		
-		RR.SetQuantumTime(0);
+		RR.SetQuantumTime(5);
 		RR.Process();
 	}
 }

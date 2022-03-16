@@ -9,10 +9,10 @@ public class Main
 	
 	private static byte[] a;
 	
-	private static byte onesCount;
-	private static byte twosCount;
-	private static byte threesCount;
-	private static byte foursCount;
+	private static int onesCount;
+	private static int twosCount;
+	private static int threesCount;
+	private static int foursCount;
 	
 	private static int modifier;
 	
@@ -28,10 +28,23 @@ public class Main
 		
 		for(int x : tab)
 		{
-			if(x == 1) onesCount++;
-			else if(x == 2) twosCount++;
-			else if(x == 3) threesCount++;
-			else if(x == 4) foursCount++;
+			switch(x)
+			{
+			case 0:				
+				break;
+			case 1:
+				onesCount++;
+				break;
+			case 2:
+				twosCount++;
+				break;
+			case 3:
+				threesCount++;
+				break;
+			default:
+				foursCount++;
+				break;
+			}			
 		}
 		
 		solution = 0;
@@ -185,6 +198,12 @@ public class Main
 				
 				solution++;
 				
+				if(modifier > 0)
+				{
+					solution--;
+					modifier--;
+				}		
+				
 				Write("1,4 -> 2,3");		
 			}	
 		}		
@@ -217,13 +236,17 @@ public class Main
 			threesCount += 2;
 			
 			solution++;
-			solution -= modifier;
-			modifier = 0;
+			
+			if(modifier > 0)
+			{
+				solution--;
+				modifier--;
+			}			
 			
 			Write("2,4 -> 3,3");
 		}		
 		
-		if(twosCount > 0 && threesCount > 0) //Z 2, 3 tworzymy 1, 4
+		if(twosCount > 0 && threesCount > 0 && onesCount == 0) //Z 2, 3 tworzymy 1, 4
 		{
 			while(twoIndex < n && a[twoIndex] != 2)
 			{
@@ -243,9 +266,8 @@ public class Main
 			foursCount++;
 			onesCount++;
 			
-			solution++;
-			solution -= modifier;
-			modifier = 0;
+			solution++;			
+			modifier++;
 			
 			Write("2,3 -> 1,4");
 		}			
@@ -276,11 +298,11 @@ public class Main
 		}		
 	}
 	
-	private static byte[] RandomTab()
+	private static byte[] RandomTab(int length)
 	{
 		Random random = new Random();
 		
-		byte[] tab = new byte[random.nextInt(1, 21)];	
+		byte[] tab = new byte[length];	
 
 		for(int i = 0; i < tab.length; i++)
 		{
@@ -292,6 +314,8 @@ public class Main
 	
 	public static void main(String[] args) 
 	{		
-		Solve(RandomTab());
+		//Random random = new Random();
+		//Solve(RandomTab(random.nextInt(1, 21)));
+		Solve(RandomTab(30));
 	}
 }
