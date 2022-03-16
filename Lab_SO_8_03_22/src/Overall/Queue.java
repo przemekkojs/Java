@@ -32,7 +32,7 @@ public class Queue
 		{
 			processName = String.format("P%d", i);
 			arrivalTime = arrivalTimes[i];
-			burstTime = random.nextInt(1, 11);
+			burstTime = random.nextInt(11);
 			
 			queue.add(new Process(processName, arrivalTime, burstTime));
 		}
