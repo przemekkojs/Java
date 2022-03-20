@@ -1,10 +1,10 @@
-package SJF;
+package Lab_8_03_22.SJF;
 
 import java.util.Vector;
 
-import Overall.AbstractProcessor;
-import Overall.Queue;
-import Overall.Process;
+import Lab_8_03_22.Overall.AbstractProcessor;
+import Lab_8_03_22.Overall.Queue;
+import Lab_8_03_22.Overall.Process;
 
 //Wykonywany jest proces o najkrótszym czasie wykonania spoœród mo¿liwych
 

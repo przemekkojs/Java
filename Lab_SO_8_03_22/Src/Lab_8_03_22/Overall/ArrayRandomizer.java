@@ -1,4 +1,4 @@
-package Overall;
+package Lab_8_03_22.Overall;
 import java.util.Random;
 
 public class ArrayRandomizer 
