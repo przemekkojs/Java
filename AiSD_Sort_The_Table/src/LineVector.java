@@ -21,6 +21,11 @@ public class LineVector
 		return content;
 	}
 	
+	public void Set(Vector<Line> _content)
+	{
+		content = _content;
+	}
+	
 	public int Index()
 	{
 		return index;
