@@ -1,10 +1,10 @@
-package RR;
+package Lab_8_03_22.RR;
 
 import java.util.Vector;
 
-import Overall.AbstractProcessor;
-import Overall.Queue;
-import Overall.Process;
+import Lab_8_03_22.Overall.AbstractProcessor;
+import Lab_8_03_22.Overall.Queue;
+import Lab_8_03_22.Overall.Process;
 
 public class RRProcessor extends AbstractProcessor 
 {

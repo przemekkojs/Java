@@ -1,7 +1,7 @@
-package FCFS;
-
-import Overall.*;
-import Overall.Process;
+package Lab_8_03_22.FCFS;
+import Lab_8_03_22.Overall.AbstractProcessor;
+import Lab_8_03_22.Overall.Queue;
+import Lab_8_03_22.Overall.Process;
 
 //W jakiej kolejnoœci procesy siê pojawi¹, w takiej zostan¹ wykonane
 

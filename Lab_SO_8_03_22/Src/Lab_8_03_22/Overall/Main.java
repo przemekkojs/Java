@@ -1,8 +1,9 @@
-package Overall;
-import FCFS.FcfsProcessor;
-import PreemptiveSJF.PreemptiveSjfProcessor;
-import RR.RRProcessor;
-import SJF.SjfProcessor;
+package Lab_8_03_22.Overall;
+
+import Lab_8_03_22.FCFS.FcfsProcessor;
+import Lab_8_03_22.PreemptiveSJF.PreemptiveSjfProcessor;
+import Lab_8_03_22.RR.RRProcessor;
+import Lab_8_03_22.SJF.SjfProcessor;
 
 public class Main 
 {

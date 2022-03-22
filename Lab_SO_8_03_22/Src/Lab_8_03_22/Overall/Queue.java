@@ -1,4 +1,4 @@
-package Overall;
+package Lab_8_03_22.Overall;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
@@ -81,7 +81,8 @@ public class Queue
 	
 	private void SortQueue()
 	{
-		Collections.sort(queue, new Comparator<Process>() {
+		Collections.sort(queue, new Comparator<Process>() 
+		{
 			@Override
 			public int compare(Process o1, Process o2) 
 			{
