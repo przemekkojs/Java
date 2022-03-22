@@ -7,12 +7,13 @@ import Pracownik.Pracownik;
 
 public class TabIterator implements Iterator<Pracownik>
 {
-	private int current = 0;
+	private int current;
 	private Pracownik[] array;
 	
 	public TabIterator(Pracownik[] _array)
 	{
 		array = _array;
+		current = 0;
 	}
 	
 	@Override
