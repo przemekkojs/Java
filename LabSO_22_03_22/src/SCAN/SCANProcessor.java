@@ -1,9 +1,9 @@
-package Lab_22_03_22.SCAN;
+package SCAN;
 
 import java.util.Vector;
 
-import Lab_22_03_22.AbstractProcessor.AbstractProcessor;
-import Lab_22_03_22.Application.Application;
+import AbstractProcessor.AbstractProcessor;
+import Application.Application;
 
 public class SCANProcessor extends AbstractProcessor
 {

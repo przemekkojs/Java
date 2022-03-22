@@ -1,9 +1,9 @@
-package Lab_22_03_22.Disc;
+package Disc;
 
 import java.util.Vector;
 
-import Lab_22_03_22.Application.Application;
-import Lab_22_03_22.Block.Block;
+import Application.Application;
+import Block.Block;
 
 public class Disc 
 {
