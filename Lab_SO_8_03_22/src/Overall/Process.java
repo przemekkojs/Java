@@ -9,6 +9,8 @@ public class Process implements Comparable<Process>
 	private int processTime;
 	private int waitingTime;
 	
+	private boolean attached;
+	
 	public Process()
 	{
 		name = "P1";
@@ -16,7 +18,9 @@ public class Process implements Comparable<Process>
 		burstTime = 1;
 		
 		processTime = burstTime;
-		waitingTime = 0;		
+		waitingTime = 0;	
+		
+		attached = false;
 	}
 	
 	public Process(String _name, int _arrivalTime, int _burstTime)
@@ -28,6 +32,13 @@ public class Process implements Comparable<Process>
 		processTime = burstTime;
 		
 		waitingTime = 0;
+		
+		attached = false;
+	}
+	
+	public boolean Attached()
+	{
+		return attached;
 	}
 	
 	public void TimeDeploy()

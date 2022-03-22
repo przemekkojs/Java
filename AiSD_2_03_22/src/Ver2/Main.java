@@ -306,7 +306,7 @@ public class Main
 
 		for(int i = 0; i < tab.length; i++)
 		{
-			tab[i] = (byte)random.nextInt(0, 5);
+			tab[i] = (byte)random.nextInt(5);
 		}
 		
 		return tab;
