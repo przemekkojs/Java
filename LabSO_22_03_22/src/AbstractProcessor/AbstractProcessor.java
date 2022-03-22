@@ -1,11 +1,11 @@
-package Lab_22_03_22.AbstractProcessor;
+package AbstractProcessor;
 
 import java.util.Comparator;
 import java.util.Vector;
 
-import Lab_22_03_22.Application.Application;
-import Lab_22_03_22.Disc.Disc;
-import Lab_22_03_22.Queue.Queue;
+import Application.Application;
+import Disc.Disc;
+import Queue.Queue;
 
 public abstract class AbstractProcessor 
 {

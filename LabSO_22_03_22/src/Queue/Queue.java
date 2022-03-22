@@ -1,10 +1,10 @@
-package Lab_22_03_22.Queue;
+package Queue;
 
 import java.util.Random;
 import java.util.Vector;
 
-import Lab_22_03_22.Application.Application;
-import Lab_22_03_22.Helpers.VectorCopy;
+import Application.Application;
+import Helpers.VectorCopy;
 
 public class Queue 
 {

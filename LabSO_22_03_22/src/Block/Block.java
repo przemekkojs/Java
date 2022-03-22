@@ -1,4 +1,4 @@
-package Lab_22_03_22.Block;
+package Block;
 
 public class Block 
 {

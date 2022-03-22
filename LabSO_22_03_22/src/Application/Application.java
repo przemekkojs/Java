@@ -1,4 +1,4 @@
-package Lab_22_03_22.Application;
+package Application;
 
 import java.util.Random;
 

@@ -1,14 +1,14 @@
-package Lab_22_03_22.Main;
+package Main;
 
 import java.util.Random;
 import java.util.Vector;
 
-import Lab_22_03_22.Application.Application;
-import Lab_22_03_22.C_SCAN.CLOOKProcessor;
-import Lab_22_03_22.EDF.EDFProcessor;
-import Lab_22_03_22.FCFS.FCFSProcessor;
-import Lab_22_03_22.SCAN.SCANProcessor;
-import Lab_22_03_22.SSTF.SSTFProcessor;
+import Application.Application;
+import C_SCAN.CLOOKProcessor;
+import EDF.EDFProcessor;
+import FCFS.FCFSProcessor;
+import SCAN.SCANProcessor;
+import SSTF.SSTFProcessor;
 
 public class MainClass 
 {
