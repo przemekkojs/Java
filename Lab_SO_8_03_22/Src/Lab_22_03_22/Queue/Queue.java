@@ -27,7 +27,7 @@ public class Queue
 		
 		for(int i = 0; i < count; i++)
 		{
-			queue.add(new Application(random.nextInt(maxArrivalTime), random.nextInt(discSize), random.nextInt(discSize), bound));
+			queue.add(new Application(random.nextInt(maxArrivalTime), random.nextInt(discSize), random.nextInt(2), bound));
 		}
 	}
 	

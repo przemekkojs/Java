@@ -16,7 +16,13 @@ public class Application
 		arrivalTime = _arrivalTime;
 		block = _block;
 		priority = _priority;
-		deadline = _arrivalTime + _priority * (random.nextInt(_bound) + 1);
+		deadline = (random.nextInt(_bound) + 1);
+	}
+	
+	@Override
+	public String toString()
+	{
+		return String.format("Application: %d, %d, %d, %d", arrivalTime, block, priority, deadline);
 	}
 	
 	public int Block()
@@ -34,7 +40,7 @@ public class Application
 		return priority;
 	}
 	
-	public int Deadlint()
+	public int Deadline()
 	{
 		return deadline;
 	}

@@ -30,10 +30,10 @@ public class Disc
 		}
 	}
 	
-	public void MoveHead()
-	{
-		headMovements++;
-		head += 1 * direction;		
+	public void MoveHead(int pos)
+	{		
+		headMovements += Math.abs(pos - head);
+		head = pos;		
 	}
 	
 	public void ChangeDirection()
@@ -54,6 +54,11 @@ public class Disc
 	public int getSize()
 	{
 		return blocks.length;
+	}
+	
+	public int Direction()
+	{
+		return direction;
 	}
 	
 	public void Serve()
