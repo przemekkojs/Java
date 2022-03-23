@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD
 	<classpathentry excluding="Lab_8_03_22/FCFS/|Lab_8_03_22/Overall/|Lab_8_03_22/PreemptiveSJF/|Lab_8_03_22/RR/|Lab_8_03_22/SJF/|Lab_8_03_22/" kind="src" path="Src"/>
 	<classpathentry kind="src" path="Src/Lab_8_03_22"/>
+=======
+	<classpathentry excluding="Lab_8_03_22/FCFS/|Lab_8_03_22/Overall/|Lab_8_03_22/PreemptiveSJF/|Lab_8_03_22/RR/|Lab_8_03_22/SJF/" kind="src" path="Src"/>
+	<classpathentry kind="src" path="src/Lab_22_03_22"/>
+>>>>>>> 1fd2ee15817eedaa9680dc23ba9f30d2edbf5fca
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
