@@ -70,7 +70,7 @@ public class CLOOKProcessor extends AbstractProcessor
 			}			
 		}
 		
-		System.out.println("HeadMovements: " + disc.getHeadMovements());
+		System.out.println("HeadMovements: " + super.disc.getHeadMovements());
 		System.out.println("=============================================:");
 	}	
 

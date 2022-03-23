@@ -22,11 +22,11 @@ public class MainClass
 	
 	private static final int DISC_SIZE = 100;
 	private static final int MAX_ARRIVAL_TIME = 100;
-	private static final int PROCESS_COUNT = 50;
+	private static final int PROCESS_COUNT = 100;
 	
 	public static void main(String[] args) 
 	{
-		InitRandomValues();
+		InitRandomTab();
 		
 		fcfs.Serve();
 		scan.Serve();
@@ -65,7 +65,7 @@ public class MainClass
 		
 		for(int i = 0; i < PROCESS_COUNT; i++)
 		{
-			applicationTab.add(new Application(0, random.nextInt(DISC_SIZE), random.nextInt(2), 10));
+			applicationTab.add(new Application(random.nextInt(MAX_ARRIVAL_TIME), random.nextInt(DISC_SIZE), random.nextInt(2), 10));
 		}
 		
 		fcfs = new FCFSProcessor(applicationTab);
