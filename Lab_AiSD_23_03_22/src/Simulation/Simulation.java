@@ -57,6 +57,11 @@ public class Simulation
 	
 	public void RemoveCovered()
 	{
+		if(covered == 0)
+		{
+			return;
+		}
+		
 		int startIndex = 0;
 		
 		while(list.get(startIndex).GetZnacznik())
@@ -68,6 +73,8 @@ public class Simulation
 		{
 			list.remove();
 		}
+		
+		covered = 0;
 	}
 	
 	public String Write()
