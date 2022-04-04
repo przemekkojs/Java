@@ -15,6 +15,7 @@ public class Main
 	private static JButton writeColor;
 	private static JButton writeValue;
 	private static JButton removeCovered;
+	private static JButton showStats;
 	
 	private static JTextArea output;
 	
@@ -35,6 +36,14 @@ public class Main
 			public void actionPerformed(ActionEvent e) 
 			{
 				output.setText(simulation.Write());
+			}			
+		});
+		showStats.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				output.setText(simulation.ShowInfo());
 			}			
 		});
 		writeColor.addActionListener(new ActionListener() 
@@ -84,12 +93,14 @@ public class Main
 		writeColor = new JButton("Wypisz o kolorze: ");
 		writeValue = new JButton("Wypisz o wartoœci: ");
 		removeCovered = new JButton("Usuñ zakryte");
+		showStats = new JButton("Liczba odkrytych");
 		
 		output = new JTextArea();
 		
 		value = new JTextField();
 		color = new JTextField();
 		
+		left.add(showStats);
 		left.add(writeAll);
 		left.add(removeCovered);
 		left.add(writeColor);
