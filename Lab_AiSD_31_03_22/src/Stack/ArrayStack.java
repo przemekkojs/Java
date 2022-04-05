@@ -132,4 +132,19 @@ public class ArrayStack<T> implements IStack<T>
 			e.printStackTrace();
 		}
 	}	
+	
+	@Override
+	public String toString()
+	{
+		String res = "";
+		int index = 0;
+		
+		while(content[index] != null)
+		{
+			res += content[index].toString() + ", ";
+			index++;
+		}
+		
+		return res;
+	}
 }

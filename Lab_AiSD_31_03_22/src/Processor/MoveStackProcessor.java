@@ -43,7 +43,7 @@ public class MoveStackProcessor<T>
 		
 		stack2.reverse();
 		
-		System.out.print(stack2.toString());
+		System.out.println("Stack2: " + stack2.toString());
 	}
 	
 	public void ProcessWithStack()
@@ -74,6 +74,6 @@ public class MoveStackProcessor<T>
 			}
 		}
 		
-		System.out.print(stack2.toString());
+		System.out.println("Stack2: " + stack2.toString());
 	}
 }

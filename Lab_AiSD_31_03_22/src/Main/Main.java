@@ -16,7 +16,8 @@ public class Main
 	{
 		Nawiasy();
 		Palindrom();
-		Move();
+		MoveWithStack();
+		MoveWithVariables();
 	}
 	
 	private static void getInput()
@@ -29,7 +30,7 @@ public class Main
 		processor = new Processor();
 		
 		getInput();
-		System.out.print(processor.NawiasyZrownowazone(line));
+		System.out.println(processor.NawiasyZrownowazone(line));
 	}
 	
 	private static void Palindrom()
@@ -37,10 +38,10 @@ public class Main
 		palindrom = new PalindromProcessor();
 		getInput();
 		
-		System.out.print(palindrom.Process(line));
+		System.out.println(palindrom.Process(line));
 	}
 	
-	private static void Move()
+	private static void MoveWithStack()
 	{
 		move = new MoveStackProcessor<Integer>();
 		
@@ -50,7 +51,19 @@ public class Main
 		move.Push(3);
 		move.Push(4);
 		
-		//move.ProcessWithStack();
+		move.ProcessWithStack();
+	}
+	
+	private static void MoveWithVariables()
+	{
+		move = new MoveStackProcessor<Integer>();
+		
+		move.Push(0);
+		move.Push(1);
+		move.Push(2);
+		move.Push(3);
+		move.Push(4);
+		
 		move.ProcessWithVariables();
 	}
 }
