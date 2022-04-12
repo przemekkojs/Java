@@ -1,11 +1,8 @@
-package StackZadanie;
-
 import java.util.Iterator;
 
 public class LinkedList<E> extends AbstractList<E>
 {
 	private Node<E> head;
-	private Node<E> tail;
 	private int size;
 	
 	private static class Node<E>
@@ -43,7 +40,6 @@ public class LinkedList<E> extends AbstractList<E>
 	public LinkedList()
 	{
 		head = null;
-		tail = null;
 		size = 0;
 	}
 	
@@ -55,7 +51,6 @@ public class LinkedList<E> extends AbstractList<E>
 	public void clear()
 	{
 		head = null;
-		tail = null;
 		size = 0;
 	}
 	
@@ -90,7 +85,6 @@ public class LinkedList<E> extends AbstractList<E>
 		if(head == null)
 		{
 			head = newElem;
-			tail = head;
 			return;
 		}
 		
@@ -101,16 +95,7 @@ public class LinkedList<E> extends AbstractList<E>
 			current = current.next();
 		}
 		
-		current.setNext(new Node<E>(_element));	
-		
-		try 
-		{
-			tail = elementAt(size - 1);
-		}
-		catch (OutOfRangeException e) 
-		{			
-			e.printStackTrace();
-		}
+		current.setNext(new Node<E>(_element));		
 	}
 	
 	public void add(E _element, int index)
@@ -128,19 +113,10 @@ public class LinkedList<E> extends AbstractList<E>
 		Node<E> current;
 		
 		try 
-		{			
+		{
 			current = elementAt(index - 1);
 			newElem.setNext(current.next());
-			current.setNext(newElem);	
-			
-			try 
-			{
-				tail = elementAt(size - 1);
-			}
-			catch (OutOfRangeException e) 
-			{			
-				e.printStackTrace();
-			}
+			current.setNext(newElem);			
 		} 
 		catch (OutOfRangeException e) 
 		{
@@ -160,8 +136,7 @@ public class LinkedList<E> extends AbstractList<E>
 		try 
 		{
 			elementAt(size - 2).setNext(null);
-			size--;			
-			tail = elementAt(size - 1);			
+			size--;
 		} 
 		catch (OutOfRangeException e) 
 		{			
@@ -195,15 +170,6 @@ public class LinkedList<E> extends AbstractList<E>
 				e.printStackTrace();
 			}
 		}
-		
-		try 
-		{
-			tail = elementAt(size - 1);
-		} 
-		catch (OutOfRangeException e) 
-		{			
-			e.printStackTrace();
-		}			
 	}
 
 	public int indexOf(E _data) throws OutOfRangeException
@@ -238,11 +204,6 @@ public class LinkedList<E> extends AbstractList<E>
 		return false;
 	}
 	
-	public E last()
-	{
-		return tail.get();
-	}
-	
 	public E get(int index)
 	{
 		try
@@ -268,6 +229,7 @@ public class LinkedList<E> extends AbstractList<E>
 			e.printStackTrace();
 		}
 	}
+
 	
 	private class InnerIterator implements Iterator<E>
 	{

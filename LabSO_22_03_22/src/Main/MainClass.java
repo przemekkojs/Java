@@ -26,7 +26,7 @@ public class MainClass
 	
 	public static void main(String[] args) 
 	{
-		InitRandomTab();
+		Init();
 		
 		fcfs.Serve();
 		scan.Serve();

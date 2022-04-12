@@ -1,12 +1,6 @@
-/AbstractProcessor/
-/Application/
-/Block/
 /C_SCAN/
-/Disc/
 /EDF/
 /FCFS/
-/Helpers/
-/Main/
-/Queue/
 /SCAN/
 /SSTF/
+/Main/

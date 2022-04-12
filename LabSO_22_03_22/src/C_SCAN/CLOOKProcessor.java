@@ -6,7 +6,6 @@ import Application.Application;
 
 public class CLOOKProcessor extends AbstractProcessor 
 {
-
 	public CLOOKProcessor(int _count, int _discSize, int _maxArrivalTime) 
 	{
 		super(_count, _discSize, _maxArrivalTime);		
@@ -39,8 +38,7 @@ public class CLOOKProcessor extends AbstractProcessor
 			Application lastServed = help.elementAt(index);
 			disc.MoveHead(help.elementAt(index).Block());
 			help.remove(index);
-			System.out.println("Served: " + lastServed.toString());
-			
+			System.out.println("Served: " + lastServed.toString());			
 			
 			while(help.size() > 0)
 			{
