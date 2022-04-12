@@ -83,6 +83,6 @@ public class Pracownik implements Comparable<Pracownik>, Serializable
 	
 	public String toString()
 	{
-		return String.format("%d, %s, %s, %s, %dz³, %d lat", PESEL, initials, birthDate, position, salary, hours);
+		return String.format("%d, %s, %s, %s, %dz³, %d lat, %.2f premia", PESEL, initials, birthDate, position, salary, hours, Premia());
 	}
 }

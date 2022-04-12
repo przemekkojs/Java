@@ -1,5 +1,7 @@
 package Main;
 
+import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class Main
 		
 		System.out.println("MENU");
 		System.out.println("Opcje: CREATE - stwórz now¹ bazê danych"
+				+ "\nOPEN - otwór"
 				+ "\nREAD_BASE - odczytaj bazê danych"
 				+ "\nWRITE_ALL - wypisz wszystkie rekordy"
 				+ "\nWRITE - wypisz wybranego pracownika"
@@ -35,7 +38,7 @@ public class Main
 		
 		String command = Command();
 		
-		while(command != "STOP")
+		while(!command.equals("STOP"))
 		{
 			switch(command)
 			{
@@ -43,6 +46,10 @@ public class Main
 				command = Command("Nazwa pliku: ");
 				Create(command);
 				Save(fileName);
+				break;
+			case "OPEN":
+				command = Command("Nazwa pliku: ");
+				fileName = command;
 				break;
 			case "READ_BASE":
 				Read(fileName);
@@ -165,31 +172,26 @@ public class Main
 	{
 		try 
 		{
-			FileInputStream fis = new FileInputStream(path);
+			FileInputStream fis = new FileInputStream(new File(path));
 			ObjectInputStream ois = new ObjectInputStream(fis);
-						
-			int index = 0;
-			while(ois.read() != -1)
+			
+			Object o = null;
+			while((o = ois.readObject()) != null)
 			{
-				index++;
-			}
+				list.add((Pracownik) o);		
+			}						
 			
-			fis.close();
-			ois.close();
-			
-			fis = new FileInputStream(path);
-			ois = new ObjectInputStream(fis);
-			
-			while(index > 0)
-			{				
-				list.add((Pracownik) ois.readObject());			
-				index--;
-			}
-			
-			fis.close();
 			ois.close();
 		} 
-		catch (IOException | ClassNotFoundException e) 
+		catch (ClassNotFoundException e) 
+		{			
+			e.printStackTrace();
+		}
+		catch (EOFException exc)
+		{
+		    // end of stream
+		} 
+		catch (IOException e) 
 		{			
 			e.printStackTrace();
 		}
@@ -199,7 +201,7 @@ public class Main
 	{
 		try 
 		{
-			FileOutputStream fos = new FileOutputStream(path);
+			FileOutputStream fos = new FileOutputStream(new File(path));
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			
 			for(Pracownik p : list)

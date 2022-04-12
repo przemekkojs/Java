@@ -1,5 +1,7 @@
 package StackZadanie;
 
+import java.util.Scanner;
+
 import Exception.EmptyStackException;
 
 public class Main 
@@ -8,6 +10,9 @@ public class Main
 	
 	public static void main(String[] args) throws EmptyStackException 
 	{
+		ListStack<Integer> help = new ListStack<Integer>();
+		Scanner scanner = new Scanner(System.in);
+		
 		stack = new ListStack<Integer>();
 		stack.push(0);
 		stack.push(1);
@@ -18,13 +23,30 @@ public class Main
 		
 		System.out.print("Samochody: " + stack.toString());
 		
-		int toGetOut = 0;
+		int toGetOut = Integer.parseInt(scanner.next());
 		
-		System.out.print("Aby móg³ wyjechaæ " + toGetOut + " wyjechaæ musz¹: ");
-		
-		while(stack.top() != toGetOut)
+		while(toGetOut >= 0)
 		{
-			System.out.print(stack.pop() + ", ");
-		}
+			System.out.print("Aby móg³ wyjechaæ " + toGetOut + " wyjechaæ musz¹: ");
+			
+			while(stack.top() != toGetOut && stack.size() > 0)
+			{
+				help.push(stack.top());
+				System.out.print(stack.pop() + ", ");
+			}
+			
+			if(stack.size() == 0)
+			{
+				System.out.println();
+				System.out.print("Nie ma takiego samochodu");
+			}
+			
+			while(!help.isEmpty())
+			{
+				stack.push(help.pop());
+			}
+			
+			toGetOut = Integer.parseInt(scanner.next());
+		}		
 	}
 }

@@ -43,9 +43,18 @@ public class InputManager
 		
 		System.out.print("Ci¹g: ");
 		
+		int r = random.nextInt(pagesCount);
+		int l =	random.nextInt(pagesCount) + 2;
+		
 		for(int i = 0; i < pages.length; i++)
 		{
-			pages[i] = random.nextInt(pagesCount);
+			if(i%l == 0)
+			{
+				r = random.nextInt(pagesCount);
+				l =	random.nextInt(pagesCount) + 2;
+			}
+			
+			pages[i] = r;
 			System.out.print(pages[i] + " ");
 		}		
 		
