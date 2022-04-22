@@ -1,11 +1,12 @@
-
 public class Magazyn 
 {
 	private Queue<Klient> queue;
+	private String nazwa;
 	
-	public Magazyn()
+	public Magazyn(String n)
 	{
 		queue = new Queue<Klient>();
+		nazwa = n;
 	}
 	
 	public void Add(Klient k)
@@ -30,5 +31,10 @@ public class Magazyn
 		}
 		
 		return res;
+	}
+	
+	public String name()
+	{
+		return nazwa;
 	}
 }

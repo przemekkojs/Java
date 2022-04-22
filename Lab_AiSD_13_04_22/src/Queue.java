@@ -1,4 +1,3 @@
-
 public class Queue<T> implements IQueue<T> 
 {
 	LinkedList<T> queue;
@@ -16,17 +15,16 @@ public class Queue<T> implements IQueue<T>
 
 	@Override
 	public T dequeue() throws EmptyQueueException 
-	{
-		T res = queue.get(0);
-		queue.remove(0);
-		
+	{	
+		T res = queue.head();
+		queue.removeHead();		
 		return res; 
 	}
 
 	@Override
 	public void enqueue(T elem) 
 	{
-		queue.add(elem);
+		queue.addTail(elem);
 	}
 
 	@Override

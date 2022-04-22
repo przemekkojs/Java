@@ -1,4 +1,3 @@
-
 public class Klient 
 {
 	private Queue<Zamowienie> queue;
@@ -27,11 +26,12 @@ public class Klient
 			}
 		}
 		
+		System.out.println();
 		return res;
 	}
 	
 	public void Add(Zamowienie z)
 	{
 		queue.enqueue(z);
-	}
+	}	
 }

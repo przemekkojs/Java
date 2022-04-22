@@ -3,6 +3,7 @@ import java.util.Iterator;
 public class LinkedList<E> extends AbstractList<E>
 {
 	private Node<E> head;
+	private Node<E> tail;
 	private int size;
 	
 	private static class Node<E>
@@ -40,6 +41,7 @@ public class LinkedList<E> extends AbstractList<E>
 	public LinkedList()
 	{
 		head = null;
+		tail = null;
 		size = 0;
 	}
 	
@@ -51,6 +53,7 @@ public class LinkedList<E> extends AbstractList<E>
 	public void clear()
 	{
 		head = null;
+		tail = null;
 		size = 0;
 	}
 	
@@ -85,17 +88,18 @@ public class LinkedList<E> extends AbstractList<E>
 		if(head == null)
 		{
 			head = newElem;
+			tail = head;
 			return;
-		}
+		}		
+	}
+	
+	public void addHead(E _element)
+	{
+		size++;
+		Node<E> help = new Node<E>(_element);
 		
-		Node<E> current = head;
-		
-		while(current.next() != null)
-		{
-			current = current.next();
-		}
-		
-		current.setNext(new Node<E>(_element));		
+		help.setNext(head);
+		head = help;
 	}
 	
 	public void add(E _element, int index)
@@ -103,14 +107,18 @@ public class LinkedList<E> extends AbstractList<E>
 		Node<E> newElem = new Node<E>(_element);
 		size++;
 		
-		if(index == 0)
+		if(size == 0 || index == size - 1)
 		{
-			newElem.setNext(head);
-			head = newElem;
+			add(_element);
 			return;
 		}
+	
+		if(index == 0)
+		{
+			addHead(_element);
+		}
 		
-		Node<E> current;
+		Node<E> current;		
 		
 		try 
 		{
@@ -172,6 +180,48 @@ public class LinkedList<E> extends AbstractList<E>
 		}
 	}
 
+	public void removeTail()
+	{
+		size--;
+		
+		Node<E> help = head;
+		
+		while(help.next() != tail)
+		{
+			help = help.next();
+		}
+		
+		help.setNext(null);
+		tail = help;
+	}
+	
+	public void addTail(E _element)
+	{				
+		if(size == 0)
+		{
+			add(_element);
+			return;
+		}
+		
+		size++;
+		
+		Node<E> help = new Node<E>(_element);
+		tail.setNext(help);
+		tail = help;
+	}
+	
+	public void removeHead()
+	{		
+		if(size == 0)
+		{
+			clear();
+			return;
+		}
+		
+		size--;
+		head = head.next();
+	}
+	
 	public int indexOf(E _data) throws OutOfRangeException
 	{
 		int index = 0;
@@ -229,7 +279,16 @@ public class LinkedList<E> extends AbstractList<E>
 			e.printStackTrace();
 		}
 	}
-
+	
+	public E head()
+	{
+		return head.get();
+	}
+	
+	public E tail()
+	{
+		return tail.get();
+	}
 	
 	private class InnerIterator implements Iterator<E>
 	{
