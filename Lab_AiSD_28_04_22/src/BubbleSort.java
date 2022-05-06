@@ -7,7 +7,7 @@ public class BubbleSort extends AbstractSort
 	}
 
 	@Override
-	protected void Sort() 
+	protected void Sort()
 	{		
 	    for (int i = 0; i < array.length - 1; i++)
 	    {

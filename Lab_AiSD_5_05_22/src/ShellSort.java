@@ -11,25 +11,25 @@ public class ShellSort extends AbstractSort
 	public void Sort (int[] distances) 
 	{
         int it = 0;
-        int actDistance = distances[distances.length - it - 1];
+        int actDistance = distances[distances.length - 1];
         
-        while (actDistance > 1) 
+        while (it < distances.length) 
         {
-            for (int i = actDistance, comp, cur; i < array.length; i++) 
+        	actDistance = distances[distances.length - 1 - it];
+        	
+            for (int i = actDistance; i < array.length; i++) 
             {
-                cur = array[i];
-                comp = i;
+                int cur = array[i];
+                int j;
                 
-                while (comp >= actDistance && cur < array[comp - actDistance]) 
+                for (j = i; j >= actDistance && cur < array[j - actDistance]; j -= actDistance) 
                 {
-                    array[comp] = array[comp - actDistance];
-                    comp -= actDistance;
+                    array[j] = array[j - actDistance];                    
                 }
                 
-                array[comp] = cur;
+                array[j] = cur;
             }
             
-            actDistance = distances[distances.length - it - 1];
             it++;
         }        
     }

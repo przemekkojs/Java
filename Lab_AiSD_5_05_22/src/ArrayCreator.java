@@ -96,4 +96,22 @@ public class ArrayCreator
 		
 		return res;
 	}
+	
+	public static Integer[] LessonArray(int n)
+	{
+		Vector<Integer> res = new Vector<Integer>();
+		
+		int curValue = n/2;
+		int index = n - 1;
+		
+		while(index >= 1 && curValue > 0)
+		{
+			res.add(curValue);
+			curValue *= 3;
+			curValue /= 4;
+			index--;
+		}
+		
+		return res.toArray(new Integer[res.size()]);
+	}
 }
