@@ -12,31 +12,29 @@ public class IBShell extends AbstractSort
 	@Override
 	public void Sort (int[] distances) 
 	{
-        int it = 1;
-        int actDistance = distances[distances.length - it];
-
-        while (actDistance > 1) 
-        {            
-            for (int i = actDistance; i < array.length; i++)
+		int it = 0;
+        int actDistance = distances[distances.length - 1];
+        
+        while (it < distances.length - 1) 
+        {
+        	actDistance = distances[distances.length - 1 - it];
+        	
+            for (int i = actDistance; i < array.length; i++) 
             {
                 int cur = array[i];
-                int comp = i;
+                int j;
                 
-                while (comp >= actDistance && cur < array[comp - actDistance]) 
+                for (j = i; j >= actDistance && cur < array[j - actDistance]; j -= actDistance) 
                 {
-                    array[comp] = array[comp - actDistance];
-                    comp -= actDistance;
+                    array[j] = array[j - actDistance];                    
                 }
                 
-                array[comp] = cur;
+                array[j] = cur;
             }
             
-            actDistance = distances[distances.length - ++it];
-        }
+            it++;
+        }        
         
-        if (actDistance == 1)
-        {
-        	Sorts.BubbleSort(array);
-        }            
+    	Sorts.BubbleSort(array);                  
     }
 }

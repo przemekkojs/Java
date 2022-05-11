@@ -28,7 +28,7 @@ public class Main
 	{
 		Init(count);
 		
-		distances = ArrayCreator.TwoKPlusOne(count);		
+		distances = ArrayCreator.LessonArray(count);		
 		MeasureSort(sort1, ArrayCreator.CopyArray(distances));
 		MeasureSort(sort2, ArrayCreator.CopyArray(distances));
 		MeasureSort(sort3, ArrayCreator.CopyArray(distances));

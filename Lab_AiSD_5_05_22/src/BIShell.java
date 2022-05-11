@@ -12,11 +12,13 @@ public class BIShell extends AbstractSort
 	@Override
 	public void Sort (int[] distances) 
 	{
-        int it = 1;
-        int actDistance = distances[distances.length - it];
+        int it = 0;
+        int actDistance = 0;
 
-        while (actDistance > 1) 
+        while (it < distances.length - 1) 
         {
+        	actDistance = distances[distances.length - it - 1];
+        	
             for (int i = actDistance; i < array.length; i++) 
             {
                 int cur = array[i];
@@ -33,12 +35,9 @@ public class BIShell extends AbstractSort
                 }
             }
             
-            actDistance = distances[distances.length - ++it];
-        }
+            it++;            
+        }        
         
-        if (actDistance == 1)
-        {
-        	Sorts.InsertSort(array);
-        }            
+    	Sorts.InsertSort(array);                  
     }
 }
