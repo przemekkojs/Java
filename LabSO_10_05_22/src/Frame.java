@@ -7,6 +7,7 @@ public class Frame
 	public Frame(int _index)
 	{
 		index = _index;
+		usedPage = new Page(_index);
 	}
 	
 	public void changePage(Page p)
@@ -28,7 +29,7 @@ public class Frame
 	
 	public boolean allocated()
 	{
-		return (index == -1);
+		return (index != -1);
 	}
 	
 	public int index()

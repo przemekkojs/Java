@@ -5,7 +5,18 @@ public class Main
 	
 	public static void main(String[] args) 
 	{
-		Init();
+		Init();		
+		queue.initGlobalQueue();
+		queue.processLRU();			
+		
+		queue.initProcesses(Strategy.PROPORTIONAL);
+		queue.process();
+		
+		queue.initProcesses(Strategy.EQUAL);
+		queue.process();		
+		queue.initProcesses(Strategy.ERROR_FREQUENCY);		
+		queue.process();		
+		queue.initProcesses(Strategy.DISTRICTS);		
 		queue.process();
 	}
 	

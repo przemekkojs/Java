@@ -1,0 +1,8 @@
+
+public enum Strategy 
+{
+	EQUAL,
+	PROPORTIONAL,
+	ERROR_FREQUENCY,
+	DISTRICTS
+}

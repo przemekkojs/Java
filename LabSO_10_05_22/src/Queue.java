@@ -4,43 +4,111 @@ import java.util.Vector;
 public class Queue 
 {
 	private LRUProcessor lru;
-	private Memory memory;
 	private InputManager input;
 	private Process[] processes;
+	private static Random random;
 	
 	private int size;
-	private int[] global;
+	private int[] global;	
+	
+	Strategy strategy;
 	
 	public Queue()
-	{
+	{		
+		random = new Random();
+		
 		input = new InputManager();
 		size = input.size();		
-		
-		initProcesses();
-		initGlobalQueue();				
 	}
 	
-	private void initProcesses()
+	public void initProcesses(Strategy _strategy)
 	{
+		strategy = _strategy;
+		
+		int[] processSizeTab = new int[input.processCount()];		
+		int processSize = input.framesCount() / input.processCount();
+				
+		switch(strategy)
+		{
+		case EQUAL:						
+			for(int i = 0; i < input.processCount(); i++)
+			{
+				processSizeTab[i] = processSize;
+			}			
+			break;
+			
+		case PROPORTIONAL:		
+			
+			System.out.println("Ilosc stron procesow: ");
+			float modifier = (input.processCount() * 1.0f) / (input.framesCount() * 1.0f);
+			int framesLeft = input.framesCount();
+			
+			if(modifier == 0) modifier = 1;
+			
+			for(int i = 0; i < input.processCount(); i++)
+			{				
+				int a = Math.round(processes[i].processSize() * modifier);
+				processSizeTab[i] = a;							
+				System.out.println("Proces " + i + ": " + processes[i].processSize());
+				framesLeft -= a;
+			}			
+			
+			int processIndex = 0;
+			
+			while(framesLeft >= 0)
+			{
+				processSizeTab[processIndex]++;
+				processIndex++;
+				
+				if(processIndex >= input.processCount())
+				{
+					processIndex = 0;
+				}
+				
+				framesLeft--;
+			}
+			
+			break;	
+			
+		case ERROR_FREQUENCY:					
+			for(int i = 0; i < input.processCount(); i++)
+			{
+				processSizeTab[i] = processSize;
+			}
+			break;
+			
+		default:			
+			for(int i = 0; i < input.processCount(); i++)
+			{
+				processSizeTab[i] = processSize;
+			}
+			break;
+		}
+		
+		for(int i = 0; i < processes.length; i++)
+		{
+			String processName = String.format("proces %d", i);
+			processes[i] = new Process(processName, processSizeTab[i]);
+		}			
+	}
+	
+	public void initGlobalQueue()
+	{	
 		processes = new Process[input.processCount()];
 		
 		for(int i = 0; i < processes.length; i++)
 		{
-			processes[i] = new Process(String.format("proces %d", i));
-		}
-	}
-	
-	private void initGlobalQueue()
-	{
-		Random random = new Random();
-		
-		Vector<Integer> help = new Vector<Integer>();		
+			String processName = String.format("proces %d", i);
+			processes[i] = new Process(processName, random.nextInt(input.framesCount()));
+		}	
 		
 		for(Process p : processes)
 		{
-			p.generateQueue(random.nextInt(input.pagesCount() - 1) + 1);			
-			System.out.printf("%s%n", p.toString());			
+			p.generateQueue(random.nextInt(input.pagesCount() - 1) + 1);	
+			System.out.println(p.toString());
 		}
+		
+		Vector<Integer> help = new Vector<Integer>();			
 		
 		for(int i = 0; i < input.pagesCount(); i++)
 		{
@@ -59,85 +127,135 @@ public class Queue
 	
 	public void process()
 	{
-		lru = new LRUProcessor(size, global);	
-		lru.Process();
-		memory = lru.memory();
-		memory.clear();
-		
-		//Teoretycznie spelniaja to sama role, ale chodzi o czytelnosc
-		int allocatedCount = 0;
-		int freeIndex = 0;
-		
-		int tabIndex = 0;
-		
-		for(int i = 0; i < input.processCount(); i++)
+		switch(strategy)
 		{
-			int[] currentlyAllocated = new int[input.processCount()];
+		case EQUAL:			
+			System.out.println("Strategia: podzia³ równy");			
+			break;
 			
-			for(int j = 0; j < processes.length; j++)
+		case PROPORTIONAL:			
+			System.out.println("Strategia: podzia³ proporcjonalny");			
+			break;	
+			
+		case ERROR_FREQUENCY:		
+			System.out.println("Strategia: zliczanie iloœci b³êdów");			
+			break;
+			
+		default:
+			System.out.println("Strategia: model strefowy");
+			break;
+		}
+		
+		int errorCount = 0;
+		int processIndex = 0;
+		
+		for(int i = 0; i < global.length; i++)
+		{
+			int allocationIndex = 0;
+			
+			while(allocationIndex < processes[processIndex].processSize())
 			{
-				if(i < processes[j].queue().length)
+				if(!processes[processIndex].memory().allocated(allocationIndex))
+				{					
+					break;
+				}
+				
+				allocationIndex++;
+			}
+			
+			if(allocationIndex >= processes[processIndex].processSize())
+			{
+				processes[processIndex].error();
+				errorCount++;
+				allocationIndex = LeastNeeded(i % (processIndex + 1), processIndex);
+			}			
+			else
+			{
+				processes[processIndex].memory().allocate(allocationIndex, global[i]);		
+			}			
+			
+			processIndex++;			
+			if(processIndex >= input.processCount()) 
+			{
+				processIndex = 0;
+				
+				if(strategy == Strategy.ERROR_FREQUENCY || strategy == Strategy.DISTRICTS)
 				{
-					int page = processes[j].queue()[i];
-					
-					//Jezeli strona jest w pamieci, to nie trzeba alokowac
-					if(ArrayManager.Contains(page, currentlyAllocated))
-					{
-						processes[j].error();
-					}
-					else //W przeciwnym razie
-					{
-						if(allocatedCount < input.framesCount()) //Jak dla lru
-						{
-							//Alokujemy na wolnym miejscu							
-							memory.memory()[freeIndex].changePage(new Page(page));
-							
-							processes[j].error();
-							freeIndex++;
-							allocatedCount++;
-						}
-						else
-						{
-							processes[j].error();
-							int allocationIndex = LeastNeeded(tabIndex);
-							memory.memory()[allocationIndex].changePage(new Page(page));
-						}					
-					}					
-					
-					currentlyAllocated[j] = processes[j].queue()[i];
-					tabIndex++;
+					int a = random.nextInt(input.processCount());
+					int b = random.nextInt(input.processCount());
+											
+					processes[a].newMemory(processes[a].memory().size() + 1);
+					processes[b].newMemory(processes[b].memory().size() - 1);
 				}			
 			}
-		}		
+		}
 		
-		//Wypisanie ilosci bledow kazdego procesu		
-		int count = 0;
+		int e = errorCount;
+		if(strategy == Strategy.DISTRICTS) 
+		{
+			e = errorCount - input.processCount();		
+		}
 		
-		System.out.print("Bledy dla ka¿dego procesu: ");
+		System.out.println("Bledy lacznie: " + e);
+		System.out.print("Bledy dla kazdego procesu: ");
 		
 		for(Process p : processes)
 		{
-			System.out.print(p.errorCount() + " ");
-			count += p.errorCount();
+			System.out.print((p.errorCount()) + "(" + p.processSize() + "), ");
 		}
 		
 		System.out.println();
-		System.out.println("Laczna iloœæ b³êdów: " + count);
+		System.out.println("------------------------------");
+		System.out.println();
 	}
 	
-	private int LeastNeeded(int tabIndex)
+	public int maxErrorCountIndex()
+	{
+		int res = 0;
+		int curMax = 0;
+		
+		for(int i = 0; i < input.processCount(); i++)
+		{
+			if(processes[i].errorCount() > curMax)
+			{
+				curMax = processes[i].errorCount();
+				res = i;
+			}
+		}
+		
+		return res;
+	}
+	
+	public int minErrorCountIndex(int skip)
+	{
+		int res = 0;
+		int curMin = processes[0].errorCount();
+		
+		for(int i = 1; i < input.processCount(); i++)
+		{
+			if(processes[i].errorCount() < curMin && i != skip)
+			{
+				curMin = processes[i].errorCount();
+				res = i;
+			}
+		}
+		
+		return res;
+	}
+	
+	public int LeastNeeded(int tabIndex, int processIndex)
 	{
 		int index = 0;
 		int min = tabIndex;
 		int res = 0;
 		
-		for(int check = 0; check < memory.size(); check++)
+		for(int check = 0; check < processes[processIndex].memory().size(); check++)
 		{
 			index = tabIndex;
 			
 			while(index >= 0)
 			{
-				if(memory.memory()[check].index() == global[index])
+				if(processes[processIndex].memory().memory()[check].index() == global[index])
 				{
 					break;
 				}
@@ -154,4 +272,10 @@ public class Queue
 		
 		return res;
 	}
+	
+	public void processLRU() 
+	{
+		lru = new LRUProcessor(size, global);	
+		lru.Process();
+	}	
 }

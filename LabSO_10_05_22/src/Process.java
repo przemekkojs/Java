@@ -1,53 +1,59 @@
 import java.util.Random;
-import java.util.Vector;
 
 public class Process 
 {	
-	private Vector<Integer> usedPages;
-	private String name;
-	private int[] queue;
+	private int[] usedPages;
+	private String name;	
 	private int errorCount;
+	private int processSize;
 	
-	public Process(String _name)
+	private Memory memory;
+	
+	public Process(String _name, int _processSize)
 	{
 		name = _name;
-		usedPages = new Vector<Integer>();
-		queue = new int[1];
+		usedPages = new int[_processSize];		
 		errorCount = 0;
+		processSize = _processSize;
+		
+		memory = new Memory(_processSize);
 	}
 	
 	public String toString()
 	{
-		return String.format("%s, frames: %s", name, usedPages.toString());
+		String res = "[";
+		
+		for(int i = 0; i < usedPages.length - 1; i++)
+		{
+			res += usedPages[i] + ", ";
+		}
+		
+		res += usedPages[usedPages.length - 1] + "]";
+		
+		return String.format("%s, odwolania: %s", name, res);
 	}
 	
-	public int[] generateQueue(int _size)
+	public void generateQueue(int _size)
 	{
-		Random random = new Random();
+		Random random = new Random();		
 		
-		usedPages.clear();		
+		usedPages = new int[_size];
+		int next = random.nextInt(_size);
 		
 		for(int i = 0; i < _size; i++)
 		{
-			usedPages.add(random.nextInt(_size));
-		}
-		
-		int[] res = new int[usedPages.size()];
-		int _index = 0;
-		
-		for(Integer i : usedPages)
-		{
-			res[_index] = i;
-			_index++;
-		}
-		
-		queue = res;
-		return res;
+			if(random.nextBoolean())
+			{
+				next = random.nextInt(_size);
+			}
+			
+			usedPages[i] = next;
+		}		
 	}
 	
 	public int[] queue()
 	{
-		return queue;
+		return usedPages;
 	}
 	
 	public void error()
@@ -58,5 +64,34 @@ public class Process
 	public int errorCount()
 	{
 		return errorCount;
+	}
+	
+	public int processSize()
+	{
+		return processSize;
+	}
+	
+	public Memory memory()
+	{
+		return memory;
+	}
+	
+	public void newMemory(int newSize)
+	{
+		if(newSize < 1)
+		{
+			return;
+		}
+		
+		Frame[] old = memory.memory();		
+		Memory m = new Memory(newSize);
+		processSize = newSize;
+		
+		for(int i = 0; i < newSize && i < old.length; i++)
+		{
+			m.allocate(i, old[i].index());
+		}
+		
+		memory = m;
 	}
 }

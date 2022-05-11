@@ -67,6 +67,7 @@ public class LRUProcessor
 		}
 		
 		System.out.println("Bledy w zwyklym znaczeniu: " + errorCount);
+		System.out.println();
 	}
 	
 	private int LeastNeeded(int tabIndex)

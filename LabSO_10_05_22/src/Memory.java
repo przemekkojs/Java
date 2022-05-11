@@ -5,14 +5,9 @@ public class Memory
 	
 	public Memory(int _size)
 	{
-		frames = new Frame[_size];
-		
-		for(int i = 0; i < _size; i++)
-		{
-			frames[i] = new Frame(-1);
-		}		
-		
+		frames = new Frame[_size];		
 		size = _size;
+		clear();	
 	}	
 	
 	public int size()
@@ -36,5 +31,10 @@ public class Memory
 		{
 			frames[i] = new Frame(-1);
 		}		
+	}
+	
+	public boolean allocated(int frame)
+	{
+		return frames[frame].index() != -1;
 	}
 }
