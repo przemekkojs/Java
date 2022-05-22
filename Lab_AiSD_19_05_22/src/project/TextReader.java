@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Vector;
 
 public class TextReader 
 {
@@ -35,9 +33,10 @@ public class TextReader
 		return "";
 	}
 	
-	public static Vector<Node> convertToNode(String text)
-	{
-		Vector<Node> res = new Vector<Node>();
+	public static Node convertToSortedNodeVector(String text)
+	{		
+		Node p = null;
+		Node res = null;
 		
 		int[] arr = new int[256];
 		int length = 0;
@@ -66,14 +65,22 @@ public class TextReader
 				}
 			}
 			
-			res.add(new Node((char) curMinIndex, curMin));
+			if(p == null)
+			{
+				p = new Node((char) curMinIndex, curMin);
+				res = p;
+			}
+			else
+			{
+				p.setNext(new Node((char) curMinIndex, curMin));
+				p = p.next();
+			}
+			
 			arr[curMinIndex] = 0;
 			curMin = Integer.MAX_VALUE;
-			curMinIndex = 0;
+			curMinIndex = 0;			
 		}
 		
-		Collections.sort(res);
-		
 		return res;
-	}
+	}	
 }

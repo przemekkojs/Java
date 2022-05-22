@@ -11,6 +11,8 @@ public class TextWriter
 	
 	public static void write(String text, String path)
 	{
+		System.out.println("Zapisywanie...");
+		
 		try 
 		{
 			bw = new BufferedWriter(new FileWriter(new File(path)));
@@ -23,5 +25,7 @@ public class TextWriter
 			System.exit(-1);
 			e.printStackTrace();
 		}
+		
+		System.out.print("Zapisano");
 	}
 }
