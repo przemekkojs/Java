@@ -26,13 +26,11 @@ public class Main
 	}
 	
 	private static void code()
-	{
-		tree.createCodes();
-		tree.printCodes();
-		tree.makeTree(tree.root());		
-		
-		System.out.print("Tekst zakodowany: ");		
+	{		
+		tree.makeTree(tree.root());	
+		codedText = tree.codeText(tree.root(), text);
 		System.out.println(codedText);
+		tree.printCodes();		
 	}
 	
 	private static void save()
