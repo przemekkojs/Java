@@ -7,16 +7,14 @@ import java.io.IOException;
 
 public class TextWriter 
 {
-	private static BufferedWriter bw;
+	private BufferedWriter bw;
 	
-	public static void write(String text, String path)
+	public TextWriter(String path, String line)
 	{
-		System.out.println("Zapisywanie...");
-		
 		try 
 		{
-			bw = new BufferedWriter(new FileWriter(new File(path)));
-			bw.append(text + "\n");
+			bw = new BufferedWriter(new FileWriter(new File(path)));			
+			bw.append(line);			
 			bw.close();
 		} 
 		catch (IOException e) 
@@ -25,7 +23,5 @@ public class TextWriter
 			System.exit(-1);
 			e.printStackTrace();
 		}
-		
-		System.out.print("Zapisano");
 	}
 }

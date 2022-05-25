@@ -1,46 +1,24 @@
 package project;
 
 public class Main 
-{	
-	private static final String readPath = "input.txt";
-	private static final String writePath = "output.txt";
+{
+	private static Huffman tree;
+	private static TextReader textReader;
+	@SuppressWarnings("unused")
+	private static TextWriter textWriter;
 	
-	private static String text;	
-	private static String codedText;
-	
-	private static HuffmannTree tree;
-	
-	public static void main(String[] args)
-	{
-		init();
-		write();
-		code();
-		save();
-	}
-	
-	private static void init()
-	{
-		text = TextReader.read(readPath);		
-		Node root = TextReader.convertToSortedNodeVector(text);
-		tree = new HuffmannTree(root);
-	}
-	
-	private static void code()
-	{		
-		tree.makeTree(tree.root());	
-		codedText = tree.codeText(tree.root(), text);
-		System.out.println(codedText);
-		tree.printCodes();		
-	}
-	
-	private static void save()
-	{
-		TextWriter.write(codedText, writePath);
-	}
-	
-	private static void write()
-	{
-		System.out.println("Tekst: " + text);				
-		tree.printElements();			
-	}
+    public static void main(String[] args) 
+    {
+    	tree = new Huffman();
+    	textReader = new TextReader("input.txt");
+    	
+    	tree.createTree(textReader.characters(), textReader.quantities());
+    	tree.print();
+    	
+    	String coded = tree.codeText(textReader.text());
+    	
+    	System.out.println(coded);
+    	
+    	textWriter = new TextWriter("output.txt", coded);
+    }  
 }

@@ -8,79 +8,59 @@ import java.io.IOException;
 
 public class TextReader 
 {
-	private static BufferedReader br;
+	private BufferedReader br;
+	private int[] quantities;
+	private char[] characters;
+	private String text;
 	
-	public static String read(String path)
-	{		
+	public TextReader(String path)
+	{
 		try 
 		{
-			br = new BufferedReader(new FileReader(new File(path)));			
-			return br.readLine();			
+			br = new BufferedReader(new FileReader(new File(path)));
+			
+			String line = br.readLine();
+			text = line;
+			int count = 0;
+			
+			int[] array = new int[256];
+			
+			for(int i = 0; i < line.length(); i++)
+			{				
+				if(array[line.charAt(i)]++ == 0) count++;
+			}
+			
+			quantities = new int[count];
+			characters = new char[count];
+			
+			int index = 0;			
+			for(int i = 0; i < 256; i++)
+			{
+				if(array[i] > 0)
+				{
+					quantities[index] = array[i];
+					characters[index] = (char) i;
+					index++;
+				}
+			}
+			
+			br.close();
 		} 
 		catch (FileNotFoundException e) 
-		{			
-			System.err.println("Nie znaleziono pliku " + path);
+		{
+			System.err.println("Nie znaleziono pliku");
 			System.exit(-1);
 			e.printStackTrace();
 		} 
 		catch (IOException e) 
 		{
-			System.err.println("Pusty plik");
+			System.err.println("B³¹d odczytu");
 			System.exit(-1);
 			e.printStackTrace();
 		}
-		
-		return "";
 	}
 	
-	public static Node convertToSortedNodeVector(String text)
-	{		
-		Node p = null;
-		Node res = null;
-		
-		int[] arr = new int[256];
-		int length = 0;
-		
-		for(int i = 0; i < text.length(); i++)
-		{
-			if(arr[text.charAt(i)] == 0)
-			{
-				length++;
-			}
-			
-			arr[text.charAt(i)]++;			
-		}
-		
-		int curMin = Integer.MAX_VALUE;
-		int curMinIndex = 0;
-		
-		for(int j = 0; j < length; j++)
-		{
-			for(int i = 0; i < arr.length; i++)
-			{
-				if(arr[i] < curMin && arr[i] != 0)
-				{
-					curMin = arr[i];
-					curMinIndex = i;
-				}
-			}
-			
-			if(p == null)
-			{
-				p = new Node((char) curMinIndex, curMin);
-				res = p;
-			}
-			else
-			{
-				p.setNext(new Node((char) curMinIndex, curMin));
-				p = p.next();
-			}
-			
-			arr[curMinIndex] = 0;
-			curMin = Integer.MAX_VALUE;
-			curMinIndex = 0;			
-		}
-		
-		return res;
-	}	
+	public String text() { return text; }
+	public int[] quantities() { return quantities; }	
+	public char[] characters() { return characters; }
 }
