@@ -17,7 +17,11 @@ public class ProcessManager
 	{
 		System.out.println("Symulacja");
 		System.out.println("Iloœæ procesorów: " + _processorsSize);
-		System.out.println("Iloœæ chwil: " + _queueSize);
+		System.out.println("Iloœæ chwil: " + _queueSize);		
+		System.out.println("Pytane procesory: " + Constants.ASKED_PROCESSORS);
+		System.out.println("Górny limit (p, symulacja 1, 2): " + Constants.LIMIT);
+		System.out.println("Dolny limit (r, symulacja 3): " + Constants.LOWER_LIMIT);
+		System.out.println("Przejmowane zadania (symulacja 3): " + Constants.RECLAIMED_TASKS);
 		System.out.println();
 		
 		queueSize = _queueSize;
@@ -56,8 +60,7 @@ public class ProcessManager
 				
 				if(ask < Constants.ASKED_PROCESSORS)
 				{
-					y.attachProcess(process);
-					migrationCount++;			
+					y.attachProcess(process);							
 					continue xLoop;
 				}
 				
@@ -84,9 +87,7 @@ public class ProcessManager
 				
 				if(x.usage() > Constants.LIMIT)
 				{
-					Processor y = processors.processors().elementAt(random.nextInt(Constants.PROCESSSORS_COUNT));
-					
-					migrationCount++;
+					Processor y = processors.processors().elementAt(random.nextInt(Constants.PROCESSSORS_COUNT));						
 					callsCount++;
 					
 					while(y.usage() > Constants.LIMIT && y.usage() > x.usage())
@@ -166,14 +167,19 @@ public class ProcessManager
 	private double averageUsage()
 	{
 		double res = 0;
+		int count = 0;
 		Vector<Processor> vector = processors.processors();
 		
 		for(Processor p : vector)
 		{
-			res += p.usage();
+			if(p.usage() > 0)
+			{
+				res += p.usage();
+				count++;
+			}			
 		}
 		
-		res /= (vector.size() * 1.0d);
+		res /= (count * 1.0d);
 		
 		return res;
 	}
@@ -182,14 +188,19 @@ public class ProcessManager
 	{
 		double avg = averageUsage();
 		double res = 0;
+		int count = 0;
 		Vector<Processor> vector = processors.processors();
 		
 		for(Processor p : vector)
 		{
-			res += Math.abs(avg - p.usage());
+			if(p.usage() != 0)
+			{
+				res += Math.abs(avg - p.usage());
+				count++;
+			}			
 		}
 		
-		res /= (vector.size() * 1.0d);
+		res /= (count * 1.0d);
 		
 		return res;
 	}
