@@ -32,6 +32,7 @@ public class Queue
 		
 		for(int arrivalTime = 0; arrivalTime < size; arrivalTime++)
 		{
+			System.out.print("	-> Chwila: " + arrivalTime + ", ");
 			queue.add(new Vector<Process>());
 			
 			int processesAtTime = random.nextInt(10);
@@ -40,7 +41,9 @@ public class Queue
 			{
 				queue.elementAt(arrivalTime).add(new Process(random.nextInt(3) + 1, processId, arrivalTime));
 				processId++;
-			}			
+			}	
+			
+			System.out.println("Iloœæ procesów: " + processesAtTime);
 		}
 		
 		processCount = processId;
