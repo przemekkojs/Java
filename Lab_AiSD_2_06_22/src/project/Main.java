@@ -22,6 +22,9 @@ public class Main
 		System.out.println();
 		
 		graph.dijkstra(wroclaw);
+		System.out.println();
+		
+		graph.DFS(wroclaw);
 	}
 	
 	private static void init()

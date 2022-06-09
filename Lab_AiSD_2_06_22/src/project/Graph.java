@@ -67,7 +67,7 @@ public class Graph
 		
 		int dist[] = new int[size];
         
-        Boolean sptSet[] = new Boolean[size];
+        boolean sptSet[] = new boolean[size];
  
         for (int i = 0; i < size; i++) 
         {
@@ -94,11 +94,11 @@ public class Graph
  
         for (int i = 0; i < size; i++)
         {
-        	System.out.println(i + " " + dist[i]);
+        	System.out.printf("%d - %d%n", i, dist[i]);
         }            
     }
 	
-	int minDistance(int dist[], Boolean sptSet[])
+	private int minDistance(int dist[], boolean sptSet[])
     {       
         int min = Integer.MAX_VALUE;
         int min_index = -1;
@@ -114,6 +114,39 @@ public class Graph
         
         return min_index;
     }
+	
+	public void DFS(Vertex vertex)
+	{
+		System.out.print("DFS");
+		
+		boolean[] visited = new boolean[size];
+		DFSUtil(vertex.id(), visited);
+		
+		System.out.println();
+	}
+	
+	private void DFSUtil(int id, boolean visited[])
+	{
+		visited[id] = true;		
+		System.out.printf(" -> %s", find(id).name());
+		
+		for(int i = 0; i < size; i++)
+		{
+			if(graph[id][i] == 0) continue;
+			
+			if(!visited[i]) DFSUtil(i, visited);
+		}
+	}
+	
+	private Vertex find(int id)
+	{
+		for(Vertex v : vertices)
+		{
+			if(v.id() == id) return v;
+		}
+		
+		return null;
+	}
 	
 	public int size() { return size; }
 }
