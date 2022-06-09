@@ -35,7 +35,7 @@ public class Huffman
             HuffmanNode x = queue.poll();           
             HuffmanNode y = queue.poll();
            
-            root = new HuffmanNode(x.item + y.item, '-', x, y);            
+            root = new HuffmanNode(x.item + y.item, '-', x, y);
             queue.add(root);
         }        
     }
